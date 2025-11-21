@@ -13,7 +13,7 @@ import HomeScreen from '../pages/Home/Index';
 import VLibrasScreen from '../pages/VLibras/VLibrasPages';
 import PerfilScreen from '../pages/Perfil/PerfilPages';
 import CriarPedidoScreen from '../pages/Pedido/Index';
-import DicionarioScreen from './../pages/Dicionario/Index';
+import {Aprendizado} from './../pages/Aprendizado/index';
 
 // 1. TIPAGEM (O segredo para tirar o erro vermelho)
 export type RootStackParamList = {
@@ -26,7 +26,7 @@ export type RootStackParamList = {
 export type RootTabParamList = {
   Inicio: undefined;
   VLibras: undefined;
-  DicionarioScreen: undefined;
+  Glossario: undefined;
   Perfil: undefined;
 };
 
@@ -37,6 +37,7 @@ const Tab = createBottomTabNavigator<RootTabParamList>();
 function AppTabs() {
   return (
     <Tab.Navigator 
+    id={undefined}
       screenOptions={{ 
         headerShown: false, 
         tabBarActiveTintColor: colors.secondary,
@@ -54,8 +55,8 @@ function AppTabs() {
         options={{ tabBarIcon: ({ color }) => <Ionicons name="hand-left" size={24} color={color} /> }} 
       />
       <Tab.Screen 
-        name="Dicionario" 
-        component={DicionarioScreen} 
+        name="Glossario" 
+        component={Aprendizado} 
         options={{ tabBarIcon: ({ color }) => <Ionicons name="book" size={24} color={color} /> }} 
       />
       <Tab.Screen 
@@ -74,7 +75,9 @@ export default function Rotas() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator
+      id={undefined}
+       screenOptions={{ headerShown: false }}>
         {!signed ? (
           // MODO DESLOGADO
           <Stack.Group>
