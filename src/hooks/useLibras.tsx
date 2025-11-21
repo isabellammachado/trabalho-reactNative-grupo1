@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { SenaiSinalApi } from './../../../maos-que-falam/TiposGerais';
+import { SenaiSinalApi } from './../../TiposGerais';
 import { buscarSinaisService } from "../services/LibrasServiceApi";
 
 
