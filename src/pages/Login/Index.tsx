@@ -10,7 +10,9 @@ import { colors } from './../../theme/colors';
 import { useFonts } from 'expo-font';
 
 export default function LoginScreen({ navigation }: any) {
-
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const { signIn } = useContext(AuthContext);
 
   const [fontsLoaded] = useFonts({
     Merriweather: require('../../../assets/Fonts/static/Merriweather_120pt-Bold.ttf'),
@@ -20,11 +22,6 @@ export default function LoginScreen({ navigation }: any) {
     return null;
   }
 
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const { signIn } = useContext(AuthContext);
-
-    
 
   async function logar() {
     try {
