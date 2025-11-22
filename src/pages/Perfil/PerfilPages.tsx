@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../hooks/AuthContext';
 import Header from '../../components/Header/Index';
 import MeuBotao from '../../components/MeuBotao/Index';
+import { styles } from './Styles';
 
 export default function PerfilScreen() {
   const { user, signOut } = useContext(AuthContext);
@@ -25,9 +26,3 @@ export default function PerfilScreen() {
     </View>
   );
 }
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#F5F5F5' },
-  box: { padding: 20 },
-  lbl: { color: '#999', marginTop: 15 },
-  val: { fontSize: 18, fontWeight: 'bold', color: '#4F4F4F' }
-});
