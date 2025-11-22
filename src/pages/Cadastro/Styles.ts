@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     color: colors.text,
   },
   row: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     gap: 10,
     marginBottom: 10,
   }
