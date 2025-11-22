@@ -4,15 +4,26 @@ import { colors } from '../../theme/colors';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     padding: 20,
+    paddingTop: 100,
     backgroundColor: colors.background,
   },
+
+  surdo: {
+    width: 250,
+    height: 250,
+    marginBottom: 20,
+    resizeMode: 'contain',
+    borderRadius: 12,
+  },
+
   logo: {
     fontSize: 28,
-    fontWeight: 'bold',
     color: colors.primary,
     textAlign: 'center',
     marginBottom: 40,
-  }
+    fontFamily: 'Merriweather',
+  },
 });
