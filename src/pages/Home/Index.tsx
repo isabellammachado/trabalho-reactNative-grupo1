@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { View, FlatList, Text } from 'react-native';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../hooks/AuthContext';
 import { MOCK_REQUESTS, abrirAgenda } from '../../services/api';
 import Header from '../../components/Header/Index';
 import CardPedido from '../../components/Card/Index';

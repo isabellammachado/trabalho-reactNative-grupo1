@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, ScrollView, Alert, TouchableOpacity, Platform } from 'react-native';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../hooks/AuthContext';
 import { MOCK_REQUESTS } from '../../services/api';
 import MeuInput from '../../components/Input/Index';
 import MeuBotao from '../../components/MeuBotao/Index';

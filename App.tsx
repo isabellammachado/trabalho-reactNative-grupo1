@@ -1,7 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
-import { AuthProvider } from './src/contexts/AuthContext';
-import Rotas from './src/navigation/Rotas';
+import { AuthProvider } from './src/hooks/AuthContext';
+import Rotas from './src/routers/Rotas';
 import { colors } from './src/theme/colors';
 
 export default function App() {

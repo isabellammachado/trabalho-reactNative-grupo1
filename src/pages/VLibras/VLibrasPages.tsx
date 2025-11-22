@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, ActivityIndicator } from 'react-native';
 import { WebView } from 'react-native-webview';
 import Header from '../../components/Header/Index';
+import { styles } from './Style';
 
 export default function VLibrasScreen() {
   return (
@@ -17,7 +18,3 @@ export default function VLibrasScreen() {
     </View>
   );
 }
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#F5F5F5' },
-  load: { position: 'absolute', top: '50%', left: '45%' }
-});

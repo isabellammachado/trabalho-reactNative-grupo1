@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, Alert, Image } from 'react-native';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../hooks/AuthContext';
 import { MOCK_USERS } from '../../services/api';
 import MeuInput from '../../components/Input/Index';
 import MeuBotao from '../../components/MeuBotao/Index';
