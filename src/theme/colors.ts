@@ -7,5 +7,6 @@ export const colors = {
   text: '#4F4F4F',       // Cinza Escuro
   gray: '#9f9e9eff',
   danger: '#FF6B6B',     // Vermelho
-  border: '#DDDDDD'
+  border: '#DDDDDD',
+  vermelhoAlerta: '#D93644', // Vermelho Alerta
 };
