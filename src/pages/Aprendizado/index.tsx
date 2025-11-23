@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, ScrollView, ActivityIndicator, TouchableOpacity, TextInput, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { View, Text, ScrollView, ActivityIndicator, TouchableOpacity, TextInput} from "react-native";
 import { useSenaiSinais} from "../../hooks/useLibras";
 import { SenaiSinalApi } from "../../../TiposGerais"
 import { styles } from "./style";
@@ -7,25 +7,26 @@ import { styles } from "./style";
 export const Aprendizado = () => {
   const { sinais, loading, error, pageAtual, totalPaginas, trocarPagina } = useSenaiSinais(1, 20); 
   const [inputPage, setInputPage] = useState<string>("");
-
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Glossário de Sinais</Text>
 
-      {loading && <ActivityIndicator size="large" color="#0ea173" />}
+      {loading && <ActivityIndicator size="large" color="#008B8B" />}
       {error && <Text style={styles.errorText}>{error}</Text>}
 
-      <ScrollView style={styles.scrollView}>
+      <ScrollView >
         {sinais.length === 0 && !loading && !error && (
           <Text style={styles.infoText}>Nenhum sinal encontrado.</Text>
         )}
-
+          
         {sinais.map((sinal: SenaiSinalApi ) => (
           <View key={sinal.id} style={styles.infoContainer}>
             <Text style={styles.textoResultado}>{sinal.titulo}</Text>
             {sinal.descricaoMovimento && (
               <Text style={styles.descricaoTexto}>{sinal.descricaoMovimento}</Text>
             )}
+
           </View>
         ))}
       </ScrollView>

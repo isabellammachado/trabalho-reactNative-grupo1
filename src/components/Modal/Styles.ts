@@ -1,5 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   fundo: {
@@ -16,7 +17,7 @@ export const styles = StyleSheet.create({
   },
 
   title:{
-    fontSize: 20,
+     fontSize: width < 767 ? 20 : 40,
     fontWeight: 'bold',
     marginBottom: 10,
     color: colors.primary,
@@ -24,11 +25,12 @@ export const styles = StyleSheet.create({
   },
 
   text:{
-    fontSize: 13,
+    fontSize: width < 767 ? 13 : 40,
     marginBottom: 10,
     fontWeight: 'bold',
     color: colors.text,
     textTransform: 'uppercase',
+    
   },
 
   tag: {
@@ -41,7 +43,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   tagTxt: {
-    fontSize: 16,
+    fontSize: width < 767 ? 16 : 40,
     fontWeight: 'bold',
     color: colors.secondary,
     textTransform: 'uppercase',
