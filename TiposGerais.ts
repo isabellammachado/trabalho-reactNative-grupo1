@@ -1,5 +1,5 @@
 export interface SenaiSinalApi { 
-id: number
+  id: number
   titulo: string;
   descricaoMovimento: string | null;
   

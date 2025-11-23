@@ -1,38 +1,36 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+import { colors } from "../../theme/colors";
+const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: colors.background,
     paddingTop: 40,
   },
 
   title: {
-    fontSize: 24,
+    fontSize: width < 767 ? 24 : 40,
     fontWeight: "bold",
-    color: "#007AFF",
+    color: colors.primary,
     textAlign: "center",
      paddingTop: 40,
   },
  
-  scrollView: {
-    marginTop: 20,
-  },
-  
   input: {
     height: 50,
-    borderColor: "#CCC",
+    borderColor: colors.border,
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 15,
     marginBottom: 15,
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
     width: 60, 
     marginHorizontal: 10 
   },
   button: {
-    backgroundColor: "#34C759",
+    backgroundColor: colors.success,
     padding: 15,
     borderRadius: 8,
     marginBottom: 30,
@@ -40,47 +38,49 @@ export const styles = StyleSheet.create({
   },
   
   buttonTexto: { 
-    color: "#FFF", 
+    color: colors.white, 
     fontWeight: "bold", 
-    fontSize: 16 
+    fontSize: width < 767 ? 16 : 40,
   },
 
   infoContainer: {
     flex: 1,
-    backgroundColor: "#FFF",
+    backgroundColor: colors.white,
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
     minHeight: 200,
     borderWidth: 1,
-    borderColor: "#DDD",
+    borderColor: colors.border,
   },
 
 
   textoResultado: {
-    fontSize: 18,
+    fontSize: width < 767 ? 19 : 40,
     fontWeight: "bold",
-    color: "#333",
+    color: colors.secondary,
     marginBottom: 10,
   },
 
     errorText:{
-      color: 'red',
+      color: colors.vermelhoAlerta,
       marginBottom: 10,
       textAlign: 'center'
     },
     descricaoTexto: {
       fontSize: 14,
-      color: '#555',
+      color: '#000',
       textAlign: 'center'
     },
 
     infoText:{
-      fontSize: 16,
-      color: '#555',
+      fontSize: width < 767 ? 16 : 40,
+      color: '#000',
+      fontWeight: 'bold',
       textAlign: 'center'
     },
+
      paginacaoContainer: { 
       flexDirection: "row", 
       marginTop: 20, 
@@ -88,8 +88,6 @@ export const styles = StyleSheet.create({
       alignItems: "center" 
       },
 
-
-
-
+  
     
 });

@@ -3,10 +3,7 @@ import { Modal, View, ActivityIndicator, Text } from 'react-native';
 import { styles } from './Styles';
 import { colors } from '../../theme/colors';
 import { Pedido } from '../../types';
-import { TouchableOpacity } from 'react-native';
 import MeuBotao from './../MeuBotao/Index';
-
-// 
 
 interface PropsModal {
   isOpenModal: boolean;
