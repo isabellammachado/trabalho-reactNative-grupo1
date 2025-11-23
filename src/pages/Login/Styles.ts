@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'center',
     padding: 20,
     paddingTop: 100,
     backgroundColor: colors.background,
@@ -17,6 +16,7 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     resizeMode: 'contain',
     borderRadius: 12,
+    alignSelf: 'center',
   },
 
   logo: {

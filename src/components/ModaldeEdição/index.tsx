@@ -11,6 +11,7 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
     const [name, setName] = useState(usuarioAtual?.name || '');
     const [cep, setCep] = useState(usuarioAtual?.cep || '');
     const [nivel, setNivel] = useState(usuarioAtual?.nivel || '');
+    const [password, setPassword] = useState(usuarioAtual?.password || '');
     const [fotoPerfilURI, setFotoPerfilURI] = useState(usuarioAtual?.fotoPerfil || null);
     
     const escolheFoto = async () => {
@@ -21,7 +22,6 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
                 return;
             }
         }
-
         const result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: 'images',
             allowsEditing: true,
@@ -39,6 +39,7 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
             name: name,
             cep: cep,
             nivel: nivel,
+            password :password ,
             fotoPerfil: fotoPerfilURI, 
         };
         onSave(novosDados);
@@ -71,8 +72,8 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
                     <Text style={styles.texto}>CEP:</Text>
                     <TextInput style={styles.input} value={cep} onChangeText={setCep} />
 
-                    <Text style={styles.texto}>Nível:</Text>
-                    <TextInput style={styles.input} value={nivel} onChangeText={setNivel} />
+                    <Text style={styles.texto}>Senha:</Text>
+                    <TextInput style={styles.input} value={password } onChangeText={setPassword} />
 
                     <MeuBotao texto="SALVAR" cor="#15a5be" onPress={handleSave} />
                     <View style={{height: 10}} /> 
