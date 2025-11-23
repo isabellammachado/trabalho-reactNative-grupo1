@@ -1,12 +1,12 @@
 export type BatchMessage = {
-    key: string;      
+    key?: string;      
     type: number;     
     number: string;   
     msg: string;      
 };
 
 export type SmsDevResponseItem = {
-    statusCode: "001" | string;                  
+    statusCode: "001" | "1" | string;                  
     statusDescription: string;
     id?: string;
     situacao?: "OK" | "ERRO" | string;

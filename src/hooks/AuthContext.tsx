@@ -4,6 +4,7 @@ import { User } from '../types';
 import fotoDefault from '../../assets/images.png';
 import { MOCK_USERS } from '../services/api';
 
+
 interface AuthContextData {
   signed: boolean;
   user: User | null;
