@@ -8,6 +8,7 @@ interface AuthContextData {
   loading: boolean;
   signIn: (userData: User) => Promise<void>;
   signOut: () => Promise<void>;
+  editar: (novosDados: User) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -40,8 +41,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
   }
 
+  async function editar(novosDados: User) {
+    if(!user) return;
+    const usuarioAtualizado = { ...user, ...novosDados };
+    setUser(usuarioAtualizado);
+    await AsyncStorage.setItem('@App:user', JSON.stringify(usuarioAtualizado));
+
+  }
+
   return (
-    <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut, loading }}>
+    <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut, loading, editar }}>
       {children}
     </AuthContext.Provider>
   );

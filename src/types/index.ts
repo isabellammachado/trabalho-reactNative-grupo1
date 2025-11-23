@@ -28,3 +28,4 @@ export interface SenaiSinal {
   descricaoMovimento: string;
   // Se tiver imagem ou vídeo na API, adicionaríamos aqui depois
 }
+

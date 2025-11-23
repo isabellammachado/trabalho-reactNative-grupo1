@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, ScrollView, Alert, TouchableOpacity, Platform } from 'react-native';
+import { View, Text, ScrollView, Alert, TouchableOpacity, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { AuthContext } from '../../hooks/AuthContext';
 import { MOCK_REQUESTS } from '../../services/api';
 import MeuInput from '../../components/Input/Index';
@@ -82,6 +82,7 @@ export default function CriarPedidoScreen({ navigation }: Props) {
 
   return (
     <View style={styles.container}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Header titulo="Pedir Ajuda" />
       <ScrollView contentContainerStyle={styles.box}>
         <MeuInput placeholder="Título (Ex: Médico)" value={form.title} setValor={t => setForm({ ...form, title: t })} />
@@ -166,6 +167,7 @@ export default function CriarPedidoScreen({ navigation }: Props) {
         </View>
 
       </ScrollView>
+      </TouchableWithoutFeedback>
     </View>
   );
 }

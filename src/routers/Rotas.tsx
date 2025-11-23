@@ -14,23 +14,9 @@ import VLibrasScreen from '../pages/VLibras/VLibrasPages';
 import PerfilScreen from '../pages/Perfil/PerfilPages';
 import CriarPedidoScreen from '../pages/Pedido/Index';
 import {Aprendizado} from './../pages/Aprendizado/index';
+import { RootStackParamList, RootTabParamList } from '../@types/navigation';
 
-// 1. TIPAGEM (O segredo para tirar o erro vermelho)
-export type RootStackParamList = {
-  Login: undefined;
-  Cadastro: undefined;
-  AppTabs: undefined;
-  CriarPedido: undefined;
-};
 
-export type RootTabParamList = {
-  Inicio: undefined;
-  VLibras: undefined;
-  Glossario: undefined;
-  Perfil: undefined;
-};
-
-// 2. CRIAÇÃO COM TIPAGEM
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
