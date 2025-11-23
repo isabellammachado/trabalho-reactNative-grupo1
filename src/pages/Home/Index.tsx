@@ -9,9 +9,41 @@ import { styles } from './Styles';
 import { Pedido } from '../../types/index';
 import { colors } from '../../theme/colors';
 
+
+const POLLING_INTERVAL = 5000;
+
 export default function HomeScreen({ navigation }: any) {
   const { user } = useContext(AuthContext);
   const [lista, setLista] = useState<Pedido[]>([]);
+  const [surdoAlert, setSurdoAlert] = useState<SurdoAlert | null>(null);
+
+ const alertCount = surdoAlert ? 1 : 0;  
+
+   useEffect(() => {
+    let intervalId: NodeJS.Timeout | null = null;
+
+    const startPolling = () => {
+      carregar(); 
+      intervalId = setInterval(carregar, POLLING_INTERVAL);
+    };
+
+    const stopPolling = () => {
+      if (intervalId !== null) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    };
+
+    const focusListener = navigation.addListener('focus', startPolling);
+    const blurListener = navigation.addListener('blur', stopPolling);
+
+    return () => {
+      focusListener();
+      blurListener();
+      stopPolling();
+    };
+  }, [navigation, user]);
+
 
   const carregar = () => {
     if (!user) return;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, ScrollView, ActivityIndicator, TouchableOpacity, TextInput } from "react-native";
+import { View, Text, ScrollView, ActivityIndicator, TouchableOpacity, TextInput, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { useSenaiSinais} from "../../hooks/useLibras";
 import { SenaiSinalApi } from "../../../TiposGerais"
 import { styles } from "./style";

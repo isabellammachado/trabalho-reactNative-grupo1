@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, Alert, Image } from 'react-native';
+import { View, Text, Alert, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { AuthContext } from '../../hooks/AuthContext';
 import { MOCK_USERS } from '../../services/api';
 import MeuInput from '../../components/Input/Index';
@@ -42,6 +42,7 @@ export default function LoginScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Image style={styles.surdo} source={require('../../../assets/imagem-surdo.jpg')} />
       <Text style={styles.logo}>MÃOS QUE FALAM</Text>
   
@@ -65,6 +66,7 @@ export default function LoginScreen({ navigation }: any) {
         cor={colors.secondary}
         onPress={() => navigation.navigate('Cadastro')}
       />
+      </TouchableWithoutFeedback>
     </View>
   );
 }

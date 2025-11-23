@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, Text, View, Alert } from 'react-native';
+import { ScrollView, Text, View, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { MOCK_USERS, buscarCep } from '../../services/api';
 import MeuInput from '../../components/Input/Index';
 import MeuBotao from '../../components/MeuBotao/Index';
@@ -35,6 +35,7 @@ export default function CadastroScreen({ navigation }: any) {
 
   return (
     <ScrollView contentContainerStyle={styles.box}>
+         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Text style={styles.tit}>Criar Conta</Text>
 
       <Text style={styles.lbl}>Eu sou:</Text>
@@ -61,6 +62,7 @@ export default function CadastroScreen({ navigation }: any) {
       )}
 
       <MeuBotao texto="FINALIZAR" cor={colors.success} onPress={salvar} />
+      </TouchableWithoutFeedback>
     </ScrollView>
   );
 }
