@@ -22,7 +22,6 @@ export default function LoginScreen({ navigation }: any) {
     return null;
   }
 
-
   async function logar() {
     try {
       const req = await fetch(MOCK_USERS);
@@ -43,29 +42,32 @@ export default function LoginScreen({ navigation }: any) {
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Image style={styles.surdo} source={require('../../../assets/imagem-surdo.jpg')} />
-      <Text style={styles.logo}>MÃOS QUE FALAM</Text>
-  
-      <MeuInput
-        placeholder="Email"
-        value={email}
-        setValor={setEmail}
-        keyboardType="email-address"
-      />
+        {/* ✅ Correção: todos os filhos agrupados em um único <View> */}
+        <View>
+          <Image style={styles.surdo} source={require('../../../assets/imagem-surdo.jpg')} />
+          <Text style={styles.logo}>MÃOS QUE FALAM</Text>
 
-      <MeuInput
-        placeholder="Senha"
-        value={senha}
-        setValor={setSenha}
-        secureTextEntry
-      />
+          <MeuInput
+            placeholder="Email"
+            value={email}
+            setValor={setEmail}
+            keyboardType="email-address"
+          />
 
-      <MeuBotao texto="ENTRAR" onPress={logar} />
-      <MeuBotao
-        texto="CRIAR CONTA"
-        cor={colors.secondary}
-        onPress={() => navigation.navigate('Cadastro')}
-      />
+          <MeuInput
+            placeholder="Senha"
+            value={senha}
+            setValor={setSenha}
+            secureTextEntry
+          />
+
+          <MeuBotao texto="ENTRAR" onPress={logar} />
+          <MeuBotao
+            texto="CRIAR CONTA"
+            cor={colors.secondary}
+            onPress={() => navigation.navigate('Cadastro')}
+          />
+        </View>
       </TouchableWithoutFeedback>
     </View>
   );
