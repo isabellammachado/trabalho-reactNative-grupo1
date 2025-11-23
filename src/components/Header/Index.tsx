@@ -4,7 +4,7 @@ import { styles } from './Styles';
 
 interface HeaderProps {
     titulo: string;
-    alertCount: number; 
+    alertCount?: number; 
 }
 
 export default function Header({ titulo, alertCount }: HeaderProps) {
