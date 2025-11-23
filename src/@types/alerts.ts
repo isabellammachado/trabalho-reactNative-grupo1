@@ -1,5 +1,6 @@
 export type SurdoAlert = {
     id: string;         
     mensagem: string;   
-    hora: string;       
+    hora: string; 
+          
 };

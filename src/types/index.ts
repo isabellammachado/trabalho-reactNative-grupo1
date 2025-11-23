@@ -10,6 +10,7 @@ export interface User {
   role: Role;
   nivel?: Nivel; // Opcional, pois surdo não precisa preencher
   fotoPerfil?: string;
+  telefone: string;
 }
 
 export interface Pedido {

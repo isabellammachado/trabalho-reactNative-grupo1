@@ -26,7 +26,7 @@ export default function HomeScreen({ navigation }: any) {
     setIsModalOpen(true); 
   };
 
- const alertCount = surdoAlert ? 1 : 0;  
+//  const alertCount = surdoAlert ? 1 : 0;  
 
    useEffect(() => {
     let intervalId: NodeJS.Timeout | null = null;
