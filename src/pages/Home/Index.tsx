@@ -8,6 +8,8 @@ import MeuBotao from '../../components/MeuBotao/Index';
 import { styles } from './Styles';
 import { Pedido } from '../../types/index';
 import { colors } from '../../theme/colors';
+import { SurdoAlert } from '../../@types/alerts';
+import { ModalComponent } from '../../components/Modal/Index';
 
 
 const POLLING_INTERVAL = 5000;
@@ -16,6 +18,13 @@ export default function HomeScreen({ navigation }: any) {
   const { user } = useContext(AuthContext);
   const [lista, setLista] = useState<Pedido[]>([]);
   const [surdoAlert, setSurdoAlert] = useState<SurdoAlert | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<Pedido | null>(null);
+
+  const handleCardPress = (item: Pedido) => {
+    setSelectedItem(item); 
+    setIsModalOpen(true); 
+  };
 
  const alertCount = surdoAlert ? 1 : 0;  
 
@@ -89,10 +98,16 @@ export default function HomeScreen({ navigation }: any) {
             item={item}
             esconderBotao={user?.role === 'surdo'}
             onAceitar={() => abrirAgenda(`Ajuda: ${item.title}`, item.data_agendamento, item.location)}
+            openCard={() => handleCardPress(item)}
           />
         )}
         ListEmptyComponent={<Text style={styles.vazio}>Nada encontrado.</Text>}
         contentContainerStyle={{ padding: 15 }}
+      />
+      <ModalComponent 
+        isOpenModal={isModalOpen}
+        setIsOpenModal={setIsModalOpen}
+        itemSelected={selectedItem}
       />
     </View>
   );

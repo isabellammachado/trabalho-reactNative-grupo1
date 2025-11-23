@@ -22,7 +22,7 @@ export default function PerfilScreen() {
         <Text style={styles.val}>{user.nivel.toUpperCase()}</Text>
 
         <MeuBotao texto="SAIR" cor="#FF6B6B" onPress={signOut} />
-         <MeuBotao texto="EDITAR PERFIL" cor="#15a5be" onPress={editar} />
+         {/* <MeuBotao texto="EDITAR PERFIL" cor="#15a5be" onPress={editar} /> */}
       </View>
     </View>
   );

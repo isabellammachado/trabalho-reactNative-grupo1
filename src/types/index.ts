@@ -26,6 +26,5 @@ export interface SenaiSinal {
   id: number;
   titulo: string;
   descricaoMovimento: string;
-  // Se tiver imagem ou vídeo na API, adicionaríamos aqui depois
 }
 
