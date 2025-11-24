@@ -22,6 +22,7 @@ import { Picker } from '@react-native-picker/picker';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import * as Location from 'expo-location';
+import * as ImagePicker from 'expo-image-picker';
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { styles } from './Styles';
 
@@ -53,6 +54,11 @@ export default function CriarPedidoScreen({ navigation }: Props) {
 
   const [loadingLocation, setLoadingLocation] = useState(false);
   const [usarLocalAtual, setUsarLocalAtual] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+
+  const [cidadeGPS, setCidadeGPS] = useState('');
+
+  const [videoUri, setVideoUri] = useState<string | null>(null);
 
   const [form, setForm] = useState({
     title: '',
@@ -60,6 +66,27 @@ export default function CriarPedidoScreen({ navigation }: Props) {
     nivel: 'basico',
     descricao: ''
   });
+
+  const gravarVideo = async () => {
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert('Permissão', 'Precisamos de acesso à câmera.');
+      return;
+    }
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+      allowsEditing: true,
+      aspect: [16, 9],
+      quality: 0.5,
+      videoMaxDuration: 60,
+    });
+    if (!result.canceled && result.assets && result.assets.length > 0) {
+      setVideoUri(result.assets[0].uri);
+      Alert.alert("Sucesso", "Vídeo gravado!");
+    } else if (!result.canceled) {
+      setVideoUri(null);
+    }
+  };
 
   const definirParaAgora = () => {
     setDataSelecionada(new Date());
@@ -71,7 +98,7 @@ export default function CriarPedidoScreen({ navigation }: Props) {
     try {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
-        Alert.alert('Permissão negada', 'Ative o GPS nas configurações para usar esta função.');
+        Alert.alert('Permissão negada', 'Ative o GPS.');
         setLoadingLocation(false);
         setUsarLocalAtual(false);
         return;
@@ -85,10 +112,10 @@ export default function CriarPedidoScreen({ navigation }: Props) {
 
       if (addressResponse.length > 0) {
         const item = addressResponse[0];
-        const rua = item.street || 'Rua desconhecida';
-        const numero = item.streetNumber || 'S/N';
-        const bairro = item.district || item.subregion || '';
-        const enderecoFormatado = `${rua}, ${numero} - ${bairro}`;
+        const enderecoFormatado = `${item.street || ''}, ${item.streetNumber || 'S/N'} - ${item.district || ''}`;
+
+        if (item.subregion) setCidadeGPS(item.subregion);
+        else if (item.city) setCidadeGPS(item.city);
 
         setForm(prev => ({ ...prev, location: enderecoFormatado }));
       }
@@ -124,23 +151,39 @@ export default function CriarPedidoScreen({ navigation }: Props) {
   const criar = async () => {
     if (!form.title || !form.location || !user) return Alert.alert("Erro", "Preencha Título e Local");
 
+    setEnviando(true);
+
+    let cidadeFinal = (usarLocalAtual && cidadeGPS) ? cidadeGPS : user.cidade;
+
+    if (!cidadeFinal) cidadeFinal = 'Não informada';
+
+    const dataToSend = {
+      ...form,
+      cidade: cidadeFinal,
+      data_agendamento: dataSelecionada.toISOString(),
+      nivel_necessario: form.nivel,
+      userId: user.id || 1,
+      status: 'aberto',
+      video_url: videoUri,
+    };
+
+    console.log("ENVIANDO PEDIDO PARA:", cidadeFinal);
+
     try {
-      await fetch(MOCK_REQUESTS, {
+      const response = await fetch(MOCK_REQUESTS, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...form,
-          cidade: user.cidade || 'Não informada',
-          data_agendamento: dataSelecionada.toISOString(),
-          nivel_necessario: form.nivel,
-          userId: user.id || 1,
-          status: 'aberto'
-        })
+        body: JSON.stringify(dataToSend)
       });
+
+      if (!response.ok) throw new Error(`Status ${response.status}`);
+
       Alert.alert("Sucesso", "Ajuda solicitada! Aguarde um voluntário.");
       navigation.goBack();
     } catch (error) {
       Alert.alert("Erro", "Falha ao criar pedido");
+    } finally {
+      setEnviando(false);
     }
   };
 
@@ -174,7 +217,9 @@ export default function CriarPedidoScreen({ navigation }: Props) {
             <Text style={styles.lbl}>Onde você precisa de ajuda?</Text>
 
             <View style={styles.switchContainer}>
-              <Text style={{ flex: 1, color: '#555', fontSize: 14 }}>É na minha localização atual?</Text>
+              <Text style={{ flex: 1, color: '#555', fontSize: 14 }}>
+                {usarLocalAtual ? "Usando GPS (Desative para digitar)" : "Digitar endereço manualmente"}
+              </Text>
               <Switch
                 value={usarLocalAtual}
                 onValueChange={toggleLocalAtual}
@@ -187,7 +232,7 @@ export default function CriarPedidoScreen({ navigation }: Props) {
               <View style={{ flex: 1 }}>
                 <TextInput
                   style={[styles.inputLocation, usarLocalAtual && styles.inputDisabled]}
-                  placeholder="Digite o endereço..."
+                  placeholder="Digite o endereço completo..."
                   value={form.location}
                   onChangeText={t => setForm({ ...form, location: t })}
                   editable={!usarLocalAtual}
@@ -246,10 +291,17 @@ export default function CriarPedidoScreen({ navigation }: Props) {
             )}
 
             <Text style={styles.lbl}>Explique o problema (Opcional):</Text>
-            <TouchableOpacity style={styles.btnVideo} onPress={() => Alert.alert("Em breve", "Função de vídeo será implementada!")}>
+
+            <TouchableOpacity style={styles.btnVideo} onPress={gravarVideo}>
               <MaterialIcons name="videocam" size={24} color={colors.primary} />
-              <Text style={{ color: colors.primary, fontWeight: 'bold' }}>GRAVAR VÍDEO EM LIBRAS</Text>
+              <Text style={{ color: colors.primary, fontWeight: 'bold' }}>
+                {videoUri ? 'VÍDEO GRAVADO (Clique para refazer)' : 'GRAVAR VÍDEO EM LIBRAS'}
+              </Text>
             </TouchableOpacity>
+
+            {videoUri && (
+              <Text style={{ color: 'green', marginBottom: 10 }}>✅ Vídeo pronto para envio.</Text>
+            )}
 
             <MeuInput
               placeholder="Ou escreva detalhes aqui..."
@@ -269,7 +321,12 @@ export default function CriarPedidoScreen({ navigation }: Props) {
               </Picker>
             </View>
 
-            <MeuBotao texto="ENVIAR PEDIDO DE AJUDA" cor={colors.primary} onPress={criar} />
+            <MeuBotao
+              texto={enviando ? "ENVIANDO..." : "ENVIAR PEDIDO DE AJUDA"}
+              cor={colors.primary}
+              onPress={criar}
+              disabled={enviando}
+            />
 
             <View style={{ marginTop: 10, marginBottom: 30 }}>
               <MeuBotao texto="CANCELAR" cor={colors.gray} onPress={() => navigation.goBack()} />
@@ -281,5 +338,3 @@ export default function CriarPedidoScreen({ navigation }: Props) {
     </View>
   );
 }
-
- 

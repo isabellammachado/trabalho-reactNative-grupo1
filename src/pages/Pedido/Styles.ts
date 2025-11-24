@@ -49,13 +49,13 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     fontSize: 16,
-    color: colors.text,
+    color: '#333',
     minHeight: 50,
     textAlignVertical: 'center'
   },
   inputDisabled: {
-    backgroundColor: colors.white,
-    color: colors.gray
+    backgroundColor: '#E0E0E0',
+    color: '#666'
   },
   iconBox: {
     width: 50,
@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 10,
     gap: 10,
-    backgroundColor: colors.video
+    backgroundColor: '#e3f2fd'
   },
 
   pickerContainer: {
@@ -105,7 +105,7 @@ export const styles = StyleSheet.create({
     borderColor: colors.gray,
     borderRadius: 8,
     marginBottom: 20,
-    backgroundColor: colors.white
+    backgroundColor: '#FFF'
   }
 
 });

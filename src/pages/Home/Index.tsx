@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { View, FlatList, Text } from 'react-native';
+import { View, FlatList, Text, Alert, TouchableOpacity, StyleSheet } from 'react-native';
 import { AuthContext } from '../../hooks/AuthContext';
 import { MOCK_REQUESTS, abrirAgenda } from '../../services/api';
 import Header from '../../components/Header/Index';
@@ -8,31 +8,107 @@ import MeuBotao from '../../components/MeuBotao/Index';
 import { styles } from './Styles';
 import { Pedido } from '../../types/index';
 import { colors } from '../../theme/colors';
-import { SurdoAlert } from '../../@types/alerts';
 import { ModalComponent } from '../../components/Modal/Index';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+type RootStackParamList = {
+  Home: undefined;
+  CriarPedido: undefined;
+};
+type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const POLLING_INTERVAL = 5000;
 
-export default function HomeScreen({ navigation }: any) {
+export default function HomeScreen({ navigation }: HomeProps) {
   const { user } = useContext(AuthContext);
   const [lista, setLista] = useState<Pedido[]>([]);
-  const [surdoAlert, setSurdoAlert] = useState<SurdoAlert | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Pedido | null>(null);
 
+  const [abaVoluntario, setAbaVoluntario] = useState<'disponiveis' | 'meus'>('disponiveis');
+
   const handleCardPress = (item: Pedido) => {
-    setSelectedItem(item); 
-    setIsModalOpen(true); 
+    setSelectedItem(item);
+    setIsModalOpen(true);
   };
 
-//  const alertCount = surdoAlert ? 1 : 0;  
+  const carregar = () => {
+    if (!user) return;
 
-   useEffect(() => {
+    fetch(MOCK_REQUESTS).then(r => r.json()).then((data: Pedido[]) => {
+
+      if (user.role === 'surdo') {
+        setLista(data.filter(req => req.userId === user.id));
+      } else {
+        if (abaVoluntario === 'meus') {
+          setLista(data.filter(req => (req as any).voluntarioId === user.id));
+        } else {
+          setLista(data.filter(req => {
+
+            const statusOk = req.status === 'aberto';
+
+            return statusOk;
+          }));
+        }
+      }
+    });
+  };
+
+  const excluirPedido = (id: string) => {
+    Alert.alert("Atenção", "Tem certeza que deseja cancelar este pedido?", [
+      { text: "Não", style: "cancel" },
+      {
+        text: "Sim, Cancelar", style: "destructive", onPress: async () => {
+          try {
+            await fetch(`${MOCK_REQUESTS}/${id}`, { method: 'DELETE' });
+            setIsModalOpen(false);
+            carregar();
+          } catch (error) {
+            Alert.alert("Erro", "Não foi possível cancelar.");
+          }
+        }
+      }
+    ]);
+  };
+
+  const aceitarPedido = async (item: Pedido) => {
+    Alert.alert("Aceitar Ajuda", `Deseja aceitar: ${item.title}?`, [
+      { text: "Não", style: "cancel" },
+      {
+        text: "Sim, Aceitar", onPress: async () => {
+          try {
+            const updatedRequest = {
+              status: 'aceito',
+              voluntarioId: user?.id,
+            };
+            await fetch(`${MOCK_REQUESTS}/${item.id}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(updatedRequest)
+            });
+
+            try {
+              await abrirAgenda(`Ajuda: ${item.title}`, item.data_agendamento, item.location);
+            } catch (e) { console.log("Erro agenda", e) }
+
+            Alert.alert("Sucesso", `Você aceitou o pedido! Veja na aba 'Minhas Ajudas'.`);
+            setAbaVoluntario('meus');
+
+          } catch (error) {
+            Alert.alert("Erro", "Falha ao aceitar o pedido.");
+          }
+        }
+      }
+    ]);
+  };
+
+  useEffect(() => {
     let intervalId: NodeJS.Timeout | null = null;
 
+    carregar();
+
     const startPolling = () => {
-      carregar(); 
+      carregar();
       intervalId = setInterval(carregar, POLLING_INTERVAL);
     };
 
@@ -51,30 +127,8 @@ export default function HomeScreen({ navigation }: any) {
       blurListener();
       stopPolling();
     };
-  }, [navigation, user]);
+  }, [navigation, user, abaVoluntario]);
 
-
-  const carregar = () => {
-    if (!user) return;
-    fetch(MOCK_REQUESTS).then(r => r.json()).then((data: Pedido[]) => {
-      if (user.role === 'surdo') {
-        setLista(data.filter(req => req.userId === user.id));
-      } else {
-        setLista(data.filter(req => {
-          const cidadeOk = req.cidade === user.cidade;
-          let nivelOk = false;
-          if (user.nivel === 'avancado') nivelOk = true;
-          else if (user.nivel === 'intermediario' && req.nivel_necessario !== 'avancado') nivelOk = true;
-          else if (user.nivel === 'basico' && req.nivel_necessario === 'basico') nivelOk = true;
-          return cidadeOk && nivelOk;
-        }));
-      }
-    });
-  };
-
-  useEffect(() => {
-    return navigation.addListener('focus', carregar);
-  }, [navigation]);
 
   return (
     <View style={styles.container}>
@@ -87,28 +141,67 @@ export default function HomeScreen({ navigation }: any) {
           <Text style={styles.divisor}>Meus Pedidos:</Text>
         </View>
       ) : (
-        <Text style={styles.sub}>Pedidos na sua região ({user?.cidade})</Text>
+        <View>
+          <View style={stylesVoluntario.tabsContainer}>
+            <TouchableOpacity
+              style={[stylesVoluntario.tab, abaVoluntario === 'disponiveis' && stylesVoluntario.tabActive]}
+              onPress={() => setAbaVoluntario('disponiveis')}
+            >
+              <Text style={[stylesVoluntario.tabText, abaVoluntario === 'disponiveis' && stylesVoluntario.tabTextActive]}>
+                Disponíveis
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[stylesVoluntario.tab, abaVoluntario === 'meus' && stylesVoluntario.tabActive]}
+              onPress={() => setAbaVoluntario('meus')}
+            >
+              <Text style={[stylesVoluntario.tabText, abaVoluntario === 'meus' && stylesVoluntario.tabTextActive]}>
+                Minhas Ajudas
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.sub}>
+            {abaVoluntario === 'disponiveis' ? 'Todos os pedidos disponíveis' : 'Pedidos aceitos por você'}
+          </Text>
+        </View>
       )}
 
       <FlatList
         data={lista}
-        keyExtractor={i => i.id}
+        keyExtractor={(i) => i.id}
         renderItem={({ item }) => (
           <CardPedido
             item={item}
-            esconderBotao={user?.role === 'surdo'}
-            onAceitar={() => abrirAgenda(`Ajuda: ${item.title}`, item.data_agendamento, item.location)}
+            esconderBotao={user?.role === 'surdo' || abaVoluntario === 'meus'}
+            onAceitar={() => aceitarPedido(item)}
             openCard={() => handleCardPress(item)}
           />
         )}
-        ListEmptyComponent={<Text style={styles.vazio}>Nada encontrado.</Text>}
+        ListEmptyComponent={<Text style={styles.vazio}>Nenhum pedido encontrado.</Text>}
         contentContainerStyle={{ padding: 15 }}
       />
-      <ModalComponent 
+
+      <ModalComponent
         isOpenModal={isModalOpen}
         setIsOpenModal={setIsModalOpen}
         itemSelected={selectedItem}
+        onDelete={() => selectedItem && excluirPedido(selectedItem.id)}
       />
     </View>
   );
 }
+
+const stylesVoluntario = StyleSheet.create({
+  tabsContainer: {
+    flexDirection: 'row',
+    marginHorizontal: 20,
+    marginTop: 10,
+    backgroundColor: '#E0E0E0',
+    borderRadius: 8,
+    padding: 4,
+  },
+  tab: { flex: 1, paddingVertical: 10, alignItems: 'center', borderRadius: 6 },
+  tabActive: { backgroundColor: '#FFF', elevation: 2 },
+  tabText: { fontWeight: '600', color: '#777' },
+  tabTextActive: { color: colors.primary, fontWeight: 'bold' }
+});
