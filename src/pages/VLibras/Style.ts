@@ -1,7 +1,8 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../theme/colors";
 
 
 export const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#F5F5F5' },
+  container: { flex: 1, backgroundColor: colors.background },
   load: { position: 'absolute', top: '50%', left: '45%' }
 });

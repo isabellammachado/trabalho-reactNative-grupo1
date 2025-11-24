@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: colors.background,
+    backgroundColor: colors.video,
     paddingTop: 40,
   },
 
@@ -70,13 +70,13 @@ export const styles = StyleSheet.create({
     },
     descricaoTexto: {
       fontSize: 14,
-      color: '#000',
+      color: colors.black,
       textAlign: 'center'
     },
 
     infoText:{
       fontSize: width < 767 ? 16 : 40,
-      color: '#000',
+      color: colors.black,
       fontWeight: 'bold',
       textAlign: 'center'
     },

@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     top: 60, 
     left: 0,
     right: 0,
-    backgroundColor: 'rgba(236, 0, 0, 0.86)',
+    backgroundColor: colors.vermelhoAlerta,
     paddingVertical: 15,
     paddingHorizontal: 20,
     alignItems: 'center',
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     },
 
     time: {
-    color: '#FFD1D5', 
+    color: colors.floating, 
     fontSize: 12,
     marginTop: 4,
     },

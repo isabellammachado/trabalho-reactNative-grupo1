@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInput, TextInputProps } from 'react-native';
 import { styles } from './Styles';
+import { colors } from '../../theme/colors';
 
 interface Props extends TextInputProps {
   setValor: (text: string) => void;
@@ -11,7 +12,7 @@ export default function MeuInput({ setValor, ...rest }: Props) {
     <TextInput
       style={styles.input}
       onChangeText={setValor}
-      placeholderTextColor="#999"
+      placeholderTextColor={colors.gray}
       {...rest}
     />
   );
