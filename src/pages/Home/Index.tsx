@@ -142,20 +142,20 @@ export default function HomeScreen({ navigation }: HomeProps) {
         </View>
       ) : (
         <View>
-          <View style={stylesVoluntario.tabsContainer}>
+          <View style={styles.tabsContainer}>
             <TouchableOpacity
-              style={[stylesVoluntario.tab, abaVoluntario === 'disponiveis' && stylesVoluntario.tabActive]}
+              style={[styles.tab, abaVoluntario === 'disponiveis' && styles.tabActive]}
               onPress={() => setAbaVoluntario('disponiveis')}
             >
-              <Text style={[stylesVoluntario.tabText, abaVoluntario === 'disponiveis' && stylesVoluntario.tabTextActive]}>
+              <Text style={[styles.tabText, abaVoluntario === 'disponiveis' && styles.tabTextActive]}>
                 Disponíveis
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[stylesVoluntario.tab, abaVoluntario === 'meus' && stylesVoluntario.tabActive]}
+              style={[styles.tab, abaVoluntario === 'meus' && styles.tabActive]}
               onPress={() => setAbaVoluntario('meus')}
             >
-              <Text style={[stylesVoluntario.tabText, abaVoluntario === 'meus' && stylesVoluntario.tabTextActive]}>
+              <Text style={[styles.tabText, abaVoluntario === 'meus' && styles.tabTextActive]}>
                 Minhas Ajudas
               </Text>
             </TouchableOpacity>
@@ -191,17 +191,5 @@ export default function HomeScreen({ navigation }: HomeProps) {
   );
 }
 
-const stylesVoluntario = StyleSheet.create({
-  tabsContainer: {
-    flexDirection: 'row',
-    marginHorizontal: 20,
-    marginTop: 10,
-    backgroundColor: '#E0E0E0',
-    borderRadius: 8,
-    padding: 4,
-  },
-  tab: { flex: 1, paddingVertical: 10, alignItems: 'center', borderRadius: 6 },
-  tabActive: { backgroundColor: '#FFF', elevation: 2 },
-  tabText: { fontWeight: '600', color: '#777' },
-  tabTextActive: { color: colors.primary, fontWeight: 'bold' }
-});
+
+ 

@@ -7,7 +7,7 @@ import { styles } from './Styles';
 import { Role, Nivel } from '../../types/index';
 import { colors } from '../../theme/colors';
 import { AuthContext } from '../../hooks/AuthContext';
-import { NavigationProp } from '@react-navigation/native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 type RootStackParamList = {};
 
@@ -67,7 +67,11 @@ export default function CadastroScreen({ navigation }: { navigation: NavigationP
   };
 
   return (
+    <View style={styles.container}>
+    <KeyboardAwareScrollView keyboardShouldPersistTaps="handled" > 
     <ScrollView contentContainerStyle={styles.box}>
+      
+
       <Text style={styles.tit}>Criar Conta</Text>
 
       <Text style={styles.lbl}>Eu sou:</Text>
@@ -96,5 +100,7 @@ export default function CadastroScreen({ navigation }: { navigation: NavigationP
 
       <MeuBotao texto="FINALIZAR" cor={colors.success} onPress={salvar} />
     </ScrollView>
+    </KeyboardAwareScrollView>
+    </View>
   );
 }

@@ -8,6 +8,7 @@ import { styles } from './Styles';
 import { User } from '../../types/index';
 import { colors } from './../../theme/colors';
 import { useFonts } from 'expo-font';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default function LoginScreen({ navigation }: any) {
   const [email, setEmail] = useState('');
@@ -27,8 +28,12 @@ export default function LoginScreen({ navigation }: any) {
       const req = await fetch(MOCK_USERS);
       const users: User[] = await req.json();
 
+      if(!email || !senha){
+        Alert.alert("Erro", "Preencha todos os campos");
+        return;
+      }
       const usuario = users.find(u => u.email === email);
-
+   
       if (usuario) {
         signIn(usuario);
       } else {
@@ -41,8 +46,7 @@ export default function LoginScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        {/* ✅ Correção: todos os filhos agrupados em um único <View> */}
+      <KeyboardAwareScrollView keyboardShouldPersistTaps="handled" > 
         <View>
           <Image style={styles.surdo} source={require('../../../assets/imagem-surdo.jpg')} />
           <Text style={styles.logo}>MÃOS QUE FALAM</Text>
@@ -68,7 +72,7 @@ export default function LoginScreen({ navigation }: any) {
             onPress={() => navigation.navigate('Cadastro')}
           />
         </View>
-      </TouchableWithoutFeedback>
+      </KeyboardAwareScrollView>
     </View>
   );
 }
