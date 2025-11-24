@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
   },
 
   btnAgora: {
-    backgroundColor: '#FF9800',
+    backgroundColor: colors.danger,
     flexDirection: 'row',
     padding: 12,
     borderRadius: 8,
