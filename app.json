@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "",
+    "slug": "Mãos que Falam",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/maosquefalam.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/maosquefalam.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/maosquefalam.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "./assets/maosquefalam.png"
+    },
+    "plugins": [
+      "expo-font"
+    ]
+  }
+}
