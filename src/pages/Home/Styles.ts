@@ -4,26 +4,26 @@ import { colors } from '../../theme/colors';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.video,
   },
   sub: {
     textAlign: 'center',
     padding: 10,
-    color: '#666',
+    color: colors.text,
     fontWeight: 'bold',
     marginTop: 10,
   },
   vazio: {
     textAlign: 'center',
     marginTop: 50,
-    color: '#999',
+    color: colors.text,
   },
   areaSurdo: {
     padding: 20,
     backgroundColor: colors.white,
     marginBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#EEE'
+    borderBottomColor: colors.border
   },
   divisor: {
     marginTop: 20,

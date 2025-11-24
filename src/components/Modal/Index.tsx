@@ -27,7 +27,7 @@ export const ModalComponent = ({isOpenModal, setIsOpenModal, itemSelected}: Prop
                 <Text style={styles.info}>📍Local: {itemSelected.location}</Text>
                <MeuBotao 
                texto="SAIR" 
-               cor="#FF6B6B"  
+               cor={colors.danger}  
                onPress={() => setIsOpenModal(false)}>
                 </MeuBotao>
             </>

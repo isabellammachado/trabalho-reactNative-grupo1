@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
         alertBadge: { 
-        backgroundColor: '#D93644',
+        backgroundColor: colors.vermelhoAlerta,
         borderRadius: 12,           
         width: 24,                  
         height: 24,                 

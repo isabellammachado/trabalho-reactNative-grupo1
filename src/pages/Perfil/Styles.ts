@@ -5,20 +5,20 @@ import { colors } from "../../theme/colors";
 export const styles = StyleSheet.create({
   container: {
      flex: 1,
-      backgroundColor: '#F5F5F5' 
+      backgroundColor: colors.video
     },
 
   box: { 
     padding: 20 
 },
   lbl: {
-     color: '#999', 
+     color: colors.text, 
      marginTop: 15 
     },
   val: {
      fontSize: 18,
       fontWeight: 'bold', 
-      color: '#4F4F4F' 
+      color: colors.black
     },
      profileImage: {
         width: 100,
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
         marginBottom: 15,
         borderWidth: 3,
         borderColor: colors.secondary,
-        backgroundColor: '#ddd',
+        backgroundColor: colors.white,
     }
 
 

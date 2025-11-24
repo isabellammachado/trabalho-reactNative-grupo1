@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 10,
     elevation: 2, // Sombra Android
-    shadowColor: '#000', // Sombra iOS
+    shadowColor: colors.black, // Sombra iOS
     shadowOpacity: 0.1,
     shadowRadius: 4,
   },
@@ -18,11 +18,11 @@ export const styles = StyleSheet.create({
     color: colors.primary,
   },
   info: {
-    color: '#555',
+    color: colors.text,
     marginTop: 4,
   },
   tag: {
-    backgroundColor: '#EEE',
+    backgroundColor: colors.background,
     alignSelf: 'flex-start',
     paddingHorizontal: 8,
     paddingVertical: 4,

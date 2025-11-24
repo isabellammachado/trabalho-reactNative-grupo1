@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   },
 
   tag: {
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
     padding: 10,
     borderRadius: 20,
     marginRight: 10,
@@ -43,19 +43,19 @@ export const styles = StyleSheet.create({
   },
 
   inputLocation: {
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
     borderWidth: 1,
     borderColor: colors.gray,
     borderRadius: 8,
     padding: 12,
     fontSize: 16,
-    color: '#333',
+    color: colors.text,
     minHeight: 50,
     textAlignVertical: 'center'
   },
   inputDisabled: {
-    backgroundColor: '#E0E0E0',
-    color: '#666'
+    backgroundColor: colors.white,
+    color: colors.gray
   },
   iconBox: {
     width: 50,
@@ -81,10 +81,10 @@ export const styles = StyleSheet.create({
     borderColor: colors.gray,
     borderRadius: 8,
     padding: 10,
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
   },
-  dateLabel: { fontSize: 12, color: '#888', marginBottom: 2 },
-  dateValue: { fontSize: 16, color: '#333', fontWeight: '500' },
+  dateLabel: { fontSize: 12, color: colors.text, marginBottom: 2 },
+  dateValue: { fontSize: 16, color: colors.text, fontWeight: '500' },
 
   btnVideo: {
     borderWidth: 2,
@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 10,
     gap: 10,
-    backgroundColor: '#e3f2fd'
+    backgroundColor: colors.video
   },
 
   pickerContainer: {
@@ -105,7 +105,7 @@ export const styles = StyleSheet.create({
     borderColor: colors.gray,
     borderRadius: 8,
     marginBottom: 20,
-    backgroundColor: '#FFF'
+    backgroundColor: colors.white
   }
 
 });
