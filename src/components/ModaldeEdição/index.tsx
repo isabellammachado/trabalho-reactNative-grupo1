@@ -7,12 +7,13 @@ import { styles } from './style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import fotoDefault from  '../../../assets/images.png';
 import { colors } from "../../theme/colors";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 
 export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
     const [name, setName] = useState(usuarioAtual?.name || '');
     const [cep, setCep] = useState(usuarioAtual?.cep || '');
-    const [nivel, setNivel] = useState(usuarioAtual?.nivel || '');
+    const [nivel] = useState(usuarioAtual?.nivel || '');
     const [password, setPassword] = useState(usuarioAtual?.password || '');
     const [fotoPerfilURI, setFotoPerfilURI] = useState(usuarioAtual?.fotoPerfil || null);
     
@@ -59,6 +60,7 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
 
     return (
         <Modal
+        
             animationType="slide"
             transparent={true}
             visible={isVisible}
@@ -66,11 +68,8 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
         >
             <View style={styles.fundoModal}>
                 <View style={styles.modalConteudo}>
+                    <KeyboardAwareScrollView keyboardShouldPersistTaps="handled" >
                     <Text style={styles.modalTitle}>Editar Perfil</Text>
-                    {/* <Image 
-                        source={{ uri: fotoPerfilURI || fotoDefault }} 
-                        style={styles.profileImage} 
-                    /> */}
                     <Image
                     source={fotoPerfilURI ? { uri: fotoPerfilURI } : fotoDefault}
                     style={styles.profileImage}
@@ -95,8 +94,10 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
                     <MeuBotao texto="SALVAR" cor={colors.secondary} onPress={handleSave} />
                     <View style={{height: 10}} /> 
                     <MeuBotao texto="CANCELAR" cor={colors.danger} onPress={onClose} />
+                    </KeyboardAwareScrollView>
                 </View>
             </View>
         </Modal>
+
     );
 }
