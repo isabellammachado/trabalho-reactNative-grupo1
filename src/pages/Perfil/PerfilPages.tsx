@@ -6,6 +6,7 @@ import Header from '../../components/Header/Index';
 import MeuBotao from '../../components/MeuBotao/Index';
 import { styles } from './Styles'; 
 import { ModalEdicao } from '../../components/ModaldeEdição';
+import { colors } from '../../theme/colors';
 
 
 
@@ -48,11 +49,11 @@ export default function PerfilScreen() {
                 <Text style={styles.lbl}>Nível de Libras:</Text>
                 <Text style={styles.val}>{user.nivel.toUpperCase()}</Text>
 
-                <MeuBotao texto="SAIR" cor="#FF6B6B" onPress={signOut} />
+                <MeuBotao texto="SAIR" cor={colors.danger} onPress={signOut} />
                 
                 <MeuBotao 
                     texto="EDITAR PERFIL" 
-                    cor="#15a5be" 
+                    cor={colors.secondary} 
                     onPress={() => setModalVisivel(true)} 
                 />
             </View>
