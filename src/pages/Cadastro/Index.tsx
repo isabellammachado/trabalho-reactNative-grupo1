@@ -9,7 +9,9 @@ import { colors } from '../../theme/colors';
 import { AuthContext } from '../../hooks/AuthContext';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-export default function CadastroScreen({ navigation }: any) {
+type RootStackParamList = {};
+
+export default function CadastroScreen({ navigation }: { navigation: NavigationProp<RootStackParamList> }) {
   const [form, setForm] = useState({
     name: '', email: '', password: '', cep: '', cidade: '', telefone:'',
     role: 'surdo' as Role,
@@ -18,7 +20,6 @@ export default function CadastroScreen({ navigation }: any) {
 
   const { signIn } = useContext(AuthContext);
 
-
   const handleCep = async (cep: string) => {
     setForm({ ...form, cep });
     if (cep.length >= 8) {
@@ -26,30 +27,41 @@ export default function CadastroScreen({ navigation }: any) {
       if (res) setForm(old => ({ ...old, cep, cidade: res.localidade }));
     }
   };
-  
-  const salvar = async () => {
-    if (!form.name || !form.cidade) return Alert.alert("Erro", "Preencha tudo");
-    const novoUsuario = {
-    id: "temp-id",   
-    name: form.name,
-    email: form.email,
-    telefone: form.telefone, 
-    role: form.role,
-    nivel: form.nivel,
-    cidade: form.cidade,
-    cep: form.cep,
-    fotoPerfil: null
-  };
 
-  await signIn(novoUsuario); 
-  
+  function validarEmail(email: string) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+
+  const salvar = async () => {
+    if (!form.name || !form.cidade) {
+      return Alert.alert("Erro", "Preencha tudo");
+    }
+
+    if (!validarEmail(form.email)) {
+      return Alert.alert("Erro", "Digite um e-mail válido");
+    }
+
+    const novoUsuario = {
+      id: "temp-id",   
+      name: form.name,
+      email: form.email,
+      telefone: form.telefone, 
+      role: form.role,
+      nivel: form.nivel,
+      cidade: form.cidade,
+      cep: form.cep,
+      fotoPerfil: null
+    };
+
+    await signIn(novoUsuario); 
 
     await fetch(MOCK_USERS, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form)
     });
-     
+        
     Alert.alert("Sucesso", "Cadastrado!");
     navigation.goBack();
   };
@@ -69,11 +81,12 @@ export default function CadastroScreen({ navigation }: any) {
       </View>
 
       <MeuInput placeholder="Nome" value={form.name} setValor={t => setForm({ ...form, name: t })} />
-      <MeuInput placeholder="Email" value={form.email} setValor={t => setForm({ ...form, email: t })} />
+      <MeuInput placeholder="Email" value={form.email} setValor={t => setForm({ ...form, email: t })} keyboardType="email-address" autoCapitalize="none" />
       <MeuInput placeholder="Senha" value={form.password} setValor={t => setForm({ ...form, password: t })} secureTextEntry />
       <MeuInput placeholder="CEP" value={form.cep} setValor={handleCep} keyboardType="numeric" />
       <MeuInput placeholder="Cidade" value={form.cidade} setValor={() => { }} />
       <MeuInput placeholder="Telefone" value={form.telefone} setValor={t => setForm({ ...form, telefone: t })} keyboardType="phone-pad" />
+
       {form.role === 'voluntario' && (
         <>
           <Text style={styles.lbl}>Nível de Libras:</Text>
@@ -90,5 +103,4 @@ export default function CadastroScreen({ navigation }: any) {
     </KeyboardAwareScrollView>
     </View>
   );
-  
 }
