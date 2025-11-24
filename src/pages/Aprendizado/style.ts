@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 10 
   },
   button: {
-    backgroundColor: colors.success,
+    backgroundColor: colors.secondary,
     padding: 15,
     borderRadius: 8,
     marginBottom: 30,
