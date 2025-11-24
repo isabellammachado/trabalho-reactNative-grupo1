@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, View, ActivityIndicator, Text, StyleSheet } from 'react-native';
+import { Modal, View, ActivityIndicator, Text } from 'react-native';
 import { styles } from './Styles';
 import { colors } from '../../theme/colors';
 import { Pedido } from '../../types';

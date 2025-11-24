@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   },
 
   tag: {
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
     padding: 10,
     borderRadius: 20,
     marginRight: 10,
@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
   },
 
   inputLocation: {
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
     borderWidth: 1,
     borderColor: colors.gray,
     borderRadius: 8,
@@ -81,10 +81,10 @@ export const styles = StyleSheet.create({
     borderColor: colors.gray,
     borderRadius: 8,
     padding: 10,
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
   },
-  dateLabel: { fontSize: 12, color: '#888', marginBottom: 2 },
-  dateValue: { fontSize: 16, color: '#333', fontWeight: '500' },
+  dateLabel: { fontSize: 12, color: colors.text, marginBottom: 2 },
+  dateValue: { fontSize: 16, color: colors.text, fontWeight: '500' },
 
   btnVideo: {
     borderWidth: 2,

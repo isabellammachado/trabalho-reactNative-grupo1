@@ -6,6 +6,7 @@ import MeuBotao from '../../components/MeuBotao/Index';
 import { styles } from './style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import fotoDefault from  '../../../assets/images.png';
+import { colors } from "../../theme/colors";
 
 
 export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
@@ -78,7 +79,7 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
 
                     <MeuBotao 
                         texto="ALTERAR FOTO" 
-                        cor="#4ECDC4" 
+                        cor={colors.secondary} 
                         onPress={escolheFoto} 
                     />
                     
@@ -91,9 +92,9 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
                     <Text style={styles.texto}>Senha:</Text>
                     <TextInput style={styles.input} value={password } onChangeText={setPassword} />
 
-                    <MeuBotao texto="SALVAR" cor="#15a5be" onPress={handleSave} />
+                    <MeuBotao texto="SALVAR" cor={colors.secondary} onPress={handleSave} />
                     <View style={{height: 10}} /> 
-                    <MeuBotao texto="CANCELAR" cor="#FF6B6B" onPress={onClose} />
+                    <MeuBotao texto="CANCELAR" cor={colors.danger} onPress={onClose} />
                 </View>
             </View>
         </Modal>

@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 20,
     paddingTop: 100,
-    backgroundColor: colors.background,
+    backgroundColor: colors.video,
   },
 
   surdo: {

@@ -132,6 +132,7 @@ export default function CriarPedidoScreen({ navigation }: Props) {
     if (valor) {
       obterLocalizacaoAtual();
     } else {
+      setForm(prev => ({ ...prev, location: '' }));
     }
   };
 
