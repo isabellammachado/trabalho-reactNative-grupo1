@@ -4,7 +4,8 @@ import * as ImagePicker from 'expo-image-picker';
 import { View, Text, Modal, TextInput } from 'react-native';
 import MeuBotao from '../../components/MeuBotao/Index';
 import { styles } from './style';
-import fotoDeafault from  '../../../assets/images.png';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import fotoDefault from  '../../../assets/images.png';
 
 
 export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
@@ -34,17 +35,26 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
         }
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
         const novosDados = {
-            name: name,
-            cep: cep,
-            nivel: nivel,
-            password :password ,
-            fotoPerfil: fotoPerfilURI, 
+        name: name,
+        cep: cep,
+        nivel: nivel,
+        password: password,
+        fotoPerfil: fotoPerfilURI,
         };
+
+        try {
+        await AsyncStorage.setItem('@userData', JSON.stringify(novosDados));
+            console.log("Dados salvos no AsyncStorage!");
+        } catch (error) {
+        console.error("Erro ao salvar no AsyncStorage:", error);
+        }
+
         onSave(novosDados);
         onClose();
-    };
+        };
+
 
     return (
         <Modal
@@ -56,10 +66,16 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
             <View style={styles.fundoModal}>
                 <View style={styles.modalConteudo}>
                     <Text style={styles.modalTitle}>Editar Perfil</Text>
-                    <Image 
-                        source={{ uri: fotoPerfilURI || fotoDeafault }} 
+                    {/* <Image 
+                        source={{ uri: fotoPerfilURI || fotoDefault }} 
                         style={styles.profileImage} 
+                    /> */}
+                    <Image
+                    source={fotoPerfilURI ? { uri: fotoPerfilURI } : fotoDefault}
+                    style={styles.profileImage}
                     />
+
+
                     <MeuBotao 
                         texto="ALTERAR FOTO" 
                         cor="#4ECDC4" 
