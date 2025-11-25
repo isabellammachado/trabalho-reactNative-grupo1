@@ -2,8 +2,8 @@ import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { User } from '../types';
 import fotoDefault from '../../assets/images.png';
-import { MOCK_USERS } from '../services/api';
 import { Alert } from 'react-native';
+import { MOCK_USERS } from '../services/Api';
 
 
 interface AuthContextData {

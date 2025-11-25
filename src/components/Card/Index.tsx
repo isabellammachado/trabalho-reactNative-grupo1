@@ -25,7 +25,7 @@ export default function CardPedido({ item, onAceitar, esconderBotao, openCard }:
         {!esconderBotao && (
           <MeuBotao
             texto="AGENDAR AJUDA"
-            cor={colors.success}
+            cor={colors.secondary}
             onPress={onAceitar}
           />
         )}
