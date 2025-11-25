@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, Alert, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { AuthContext } from '../../hooks/AuthContext';
-import { MOCK_USERS } from '../../services/Api';
+import { MOCK_USERS } from '../../services/api';
 import MeuInput from '../../components/Input/Index';
 import MeuBotao from '../../components/MeuBotao/Index';
 import { styles } from './Styles';
