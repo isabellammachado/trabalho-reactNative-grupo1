@@ -5,17 +5,22 @@ import { AuthContext } from '../../hooks/AuthContext';
 import Header from '../../components/Header/Index';
 import MeuBotao from '../../components/MeuBotao/Index';
 import { styles } from './Styles'; 
-import { ModalEdicao } from '../../components/ModaldeEdição';
+import { ModalEdicao } from '../../components/ModaldeEdicao';
 import { colors } from '../../theme/colors';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 
 
 export default function PerfilScreen() {
-    const { user, signOut, editar } = useContext(AuthContext);
+    const { user, signOut, editar, deletar } = useContext(AuthContext);
     const [modalVisivel, setModalVisivel] = useState(false); 
 
     const handleSalvarEdicao = (novosDados) => {
         editar(novosDados);
+    };
+
+    const handleDelete = async () => {
+        deletar();
     };
 
     if (!user) {
@@ -32,6 +37,7 @@ export default function PerfilScreen() {
 
     return (
         <View style={styles.container}>
+            <KeyboardAwareScrollView keyboardShouldPersistTaps="handled" > 
             <Header titulo="Perfil" />
             <View style={styles.box}>
                 
@@ -56,6 +62,12 @@ export default function PerfilScreen() {
                     cor={colors.secondary} 
                     onPress={() => setModalVisivel(true)} 
                 />
+
+                <MeuBotao 
+                    texto="DELETAR PERFIL" 
+                    cor={colors.vermelhoAlerta} 
+                    onPress={handleDelete} 
+                />
             </View>
             
             <ModalEdicao 
@@ -64,6 +76,7 @@ export default function PerfilScreen() {
                 onSave={handleSalvarEdicao}
                 usuarioAtual={user} 
             />
+            </KeyboardAwareScrollView>
         </View>
     );
 }

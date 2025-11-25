@@ -136,20 +136,20 @@ export default function HomeScreen({ navigation }: HomeProps) {
         </View>
       ) : (
         <View>
-          <View style={stylesVoluntario.tabsContainer}>
+          <View style={styles.tabsContainer}>
             <TouchableOpacity
-              style={[stylesVoluntario.tab, abaVoluntario === 'disponiveis' && stylesVoluntario.tabActive]}
+              style={[styles.tab, abaVoluntario === 'disponiveis' && styles.tabActive]}
               onPress={() => setAbaVoluntario('disponiveis')}
             >
-              <Text style={[stylesVoluntario.tabText, abaVoluntario === 'disponiveis' && stylesVoluntario.tabTextActive]}>
+              <Text style={[styles.tabText, abaVoluntario === 'disponiveis' && styles.tabTextActive]}>
                 Disponíveis
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[stylesVoluntario.tab, abaVoluntario === 'meus' && stylesVoluntario.tabActive]}
+              style={[styles.tab, abaVoluntario === 'meus' && styles.tabActive]}
               onPress={() => setAbaVoluntario('meus')}
             >
-              <Text style={[stylesVoluntario.tabText, abaVoluntario === 'meus' && stylesVoluntario.tabTextActive]}>
+              <Text style={[styles.tabText, abaVoluntario === 'meus' && styles.tabTextActive]}>
                 Minhas Ajudas
               </Text>
             </TouchableOpacity>

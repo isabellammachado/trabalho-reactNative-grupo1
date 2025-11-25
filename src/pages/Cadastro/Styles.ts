@@ -2,21 +2,23 @@ import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
 
 export const styles = StyleSheet.create({
-  box: {
-    flexGrow: 1,
-    padding: 20,
-    backgroundColor: colors.background,
+  container:{
+      flex:1,
+      padding: 20,
+      backgroundColor: colors.video,
+      paddingTop: 90,
   },
-  tit: {
+  
+  tit:{
     fontSize: 24,
     color: colors.primary,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   lbl: {
     fontWeight: 'bold',
-    marginTop: 15,
+    marginTop: 10,
     marginBottom: 5,
     color: colors.text,
   },

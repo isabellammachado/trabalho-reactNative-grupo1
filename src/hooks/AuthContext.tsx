@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { User } from '../types';
 import fotoDefault from '../../assets/images.png';
 import { MOCK_USERS } from '../services/api';
+import { Alert } from 'react-native';
 
 
 interface AuthContextData {
@@ -13,6 +14,7 @@ interface AuthContextData {
   signOut: () => Promise<void>;
   editar: (novosDados: Partial<User>) => Promise<void>; 
   fotoPerfil: string | null;
+  deletar: () => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -20,7 +22,7 @@ export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-
+  
   const fotoPerfil = user?.fotoPerfil|| fotoDefault;
   
   useEffect(() => {
@@ -43,7 +45,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   async function signOut() {
-    await AsyncStorage.clear();
+    await AsyncStorage.removeItem('@App:user'); 
     setUser(null);
   }
 
@@ -57,7 +59,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     const response = await fetch(`${MOCK_USERS}/${user.id}`, {
-      method: 'PUT',     
+      method: 'PATCH',     
       headers: {
         'Content-Type': 'application/json',
       },
@@ -65,6 +67,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
 
     if (!response.ok) {
+      const txt = await response.text();
+      console.log("Erro do servidor:", txt);
       throw new Error("Falha ao atualizar no MockAPI");
     }
 
@@ -76,9 +80,38 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 };
 
+    const deletar = async () => {
+      if (!user?.id) {
+        Alert.alert("Usuário não encontrado.");
+        return;
+      }
+      
+      try {
+      const response = await fetch(`${MOCK_USERS}/${user?.id}`, {
+          method: 'DELETE',
+          headers: {
+              "Content-Type": "application/json"
+           }
+        });
 
+        if (!response.ok) {
+        const text = await response.text();
+        console.log("Erro do MockAPI:", text);
+        }
+
+        Alert.alert("Perfil excluído com sucesso.");
+        await signOut();
+
+      } catch (error) {
+        console.log(error);
+        Alert.alert("Erro ao excluir perfil:");
+      } 
+    }; 
+    
+    
   return (
-    <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut, loading, editar, fotoPerfil }}>
+    <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut, loading, editar, fotoPerfil, deletar
+    }}>
       {children}
     </AuthContext.Provider>
   );
