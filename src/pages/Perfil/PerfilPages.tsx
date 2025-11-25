@@ -5,7 +5,7 @@ import { AuthContext } from '../../hooks/AuthContext';
 import Header from '../../components/Header/Index';
 import MeuBotao from '../../components/MeuBotao/Index';
 import { styles } from './Styles'; 
-import { ModalEdicao } from '../../components/ModaldeEdição';
+import { ModalEdicao } from '../../components/ModaldeEdicao';
 import { colors } from '../../theme/colors';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
