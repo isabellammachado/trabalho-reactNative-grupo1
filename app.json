@@ -4,11 +4,11 @@
     "slug": "Mãos que Falam",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/maosquefalam.png",
+    "icon": "./assets/maos-que-falam.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/maosquefalam.png",
+      "image": "./assets/maos-que-falam.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,13 +17,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/maosquefalam.png",
+        "foregroundImage": "./assets/maos-que-falam.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true
     },
     "web": {
-      "favicon": "./assets/maosquefalam.png"
+      "favicon":"./assets/maos-que-falam.png"
     },
     "plugins": [
       "expo-font"
