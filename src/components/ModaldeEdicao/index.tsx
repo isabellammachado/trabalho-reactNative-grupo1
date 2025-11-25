@@ -3,7 +3,7 @@ import { Alert, Image, KeyboardAvoidingView, Platform, ScrollView } from "react-
 import * as ImagePicker from 'expo-image-picker'; 
 import { View, Text, Modal, TextInput } from 'react-native';
 import MeuBotao from '../../components/MeuBotao/Index';
-import { styles } from './style';
+import { styles } from './Style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import fotoDefault from  '../../../assets/images.png';
 import { colors } from "../../theme/colors";
