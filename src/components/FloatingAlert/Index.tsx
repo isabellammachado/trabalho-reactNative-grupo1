@@ -8,7 +8,6 @@ import { useContext } from 'react';
 import { AuthContext } from '../../hooks/AuthContext';
 
 
-
 interface FloatingAlertProps {
     alertData: SurdoAlert;
     onDismiss: () => void;
