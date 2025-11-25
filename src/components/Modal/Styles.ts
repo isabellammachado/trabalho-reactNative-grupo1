@@ -13,7 +13,9 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
     padding: 20,
     borderRadius: 10,
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '90%', 
+    maxHeight: '80%', 
   },
 
   title:{
@@ -55,5 +57,32 @@ export const styles = StyleSheet.create({
     marginTop: 4,
     textTransform: 'uppercase',
   },
- 
+  
+  videoContainer: {
+    width: '100%',
+    height: 220, 
+    marginBottom: 15,
+    marginTop: 5,
+    backgroundColor: '#000',
+    borderRadius: 8,
+    overflow: 'hidden', 
+    position: 'relative',
+  },
+  video: {
+    width: '100%',
+    height: '100%',
+  },
+  labelVideo: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    zIndex: 10, // Fica por cima do vídeo
+    color: '#FFF',
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+    fontSize: 12,
+    fontWeight: 'bold',
+  }
 });
