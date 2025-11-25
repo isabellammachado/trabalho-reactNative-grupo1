@@ -55,7 +55,7 @@ export default function PerfilScreen() {
                 <Text style={styles.lbl}>Nível de Libras:</Text>
                 <Text style={styles.val}>{user.nivel.toUpperCase()}</Text>
 
-                <MeuBotao texto="SAIR" cor={colors.danger} onPress={signOut} />
+                <MeuBotao texto="SAIR" cor={colors.primary} onPress={signOut} />
                 
                 <MeuBotao 
                     texto="EDITAR PERFIL" 
@@ -65,7 +65,7 @@ export default function PerfilScreen() {
 
                 <MeuBotao 
                     texto="DELETAR PERFIL" 
-                    cor={colors.vermelhoAlerta} 
+                    cor={colors.danger} 
                     onPress={handleDelete} 
                 />
             </View>

@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, Alert } from 'react-native';
 import { styles } from './Styles';
 import { SurdoAlert } from '../../@types/alerts';
 import { BatchMessage } from '../../@types/smsdev';
-import { BASE_KEY, sendBatchAlerts } from '../../services/smsDevService';
+import { BASE_KEY, sendBatchAlerts } from '../../services/SmsDevService';
 import { useContext } from 'react';
 import { AuthContext } from '../../hooks/AuthContext';
 
