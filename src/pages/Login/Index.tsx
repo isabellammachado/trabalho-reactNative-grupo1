@@ -9,8 +9,12 @@ import { User } from '../../types/index';
 import { colors } from './../../theme/colors';
 import { useFonts } from 'expo-font';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { RootStackParamList } from '../../@types/navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-export default function LoginScreen({ navigation }: any) {
+type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
+
+export default function LoginScreen({ navigation }: LoginProps) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const { signIn } = useContext(AuthContext);

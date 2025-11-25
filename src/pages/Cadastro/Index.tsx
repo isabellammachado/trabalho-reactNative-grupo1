@@ -51,6 +51,13 @@ export default function CadastroScreen({
       return Alert.alert("Erro", "Digite um e-mail válido");
     }
 
+    if(!form.password){
+      return Alert.alert("Erro", "A senha é obrigatória")
+    }
+
+    if(!form.telefone){
+      return Alert.alert("Erro", "O telefone é obrigatório")
+    }
     const novoUsuario = {
       name: form.name,
       email: form.email,
