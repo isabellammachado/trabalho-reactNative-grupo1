@@ -24,7 +24,6 @@ export default function HomeScreen({ navigation }: HomeProps) {
   const [lista, setLista] = useState<Pedido[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Pedido | null>(null);
-
   const [abaVoluntario, setAbaVoluntario] = useState<'disponiveis' | 'meus'>('disponiveis');
 
   const handleCardPress = (item: Pedido) => {
@@ -34,24 +33,17 @@ export default function HomeScreen({ navigation }: HomeProps) {
 
   const carregar = () => {
     if (!user) return;
-
     fetch(MOCK_REQUESTS).then(r => r.json()).then((data: Pedido[]) => {
-
       if (user.role === 'surdo') {
         setLista(data.filter(req => req.userId === user.id));
       } else {
         if (abaVoluntario === 'meus') {
           setLista(data.filter(req => (req as any).voluntarioId === user.id));
         } else {
-          setLista(data.filter(req => {
-
-            const statusOk = req.status === 'aberto';
-
-            return statusOk;
-          }));
+          setLista(data.filter(req => req.status === 'aberto'));
         }
       }
-    });
+    }).catch(() => {});
   };
 
   const excluirPedido = (id: string) => {
@@ -63,7 +55,7 @@ export default function HomeScreen({ navigation }: HomeProps) {
             await fetch(`${MOCK_REQUESTS}/${id}`, { method: 'DELETE' });
             setIsModalOpen(false);
             carregar();
-          } catch (error) {
+          } catch {
             Alert.alert("Erro", "Não foi possível cancelar.");
           }
         }
@@ -87,14 +79,19 @@ export default function HomeScreen({ navigation }: HomeProps) {
               body: JSON.stringify(updatedRequest)
             });
 
+            setLista(prev =>
+              prev.map(p =>
+                p.id === item.id ? { ...p, status: 'aceito', voluntarioId: user?.id } as any : p
+              )
+            );
+
             try {
               await abrirAgenda(`Ajuda: ${item.title}`, item.data_agendamento, item.location);
-            } catch (e) { console.log("Erro agenda", e) }
+            } catch {}
 
             Alert.alert("Sucesso", `Você aceitou o pedido! Veja na aba 'Minhas Ajudas'.`);
             setAbaVoluntario('meus');
-
-          } catch (error) {
+          } catch {
             Alert.alert("Erro", "Falha ao aceitar o pedido.");
           }
         }
@@ -104,24 +101,19 @@ export default function HomeScreen({ navigation }: HomeProps) {
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout | null = null;
-
     carregar();
-
     const startPolling = () => {
       carregar();
       intervalId = setInterval(carregar, POLLING_INTERVAL);
     };
-
     const stopPolling = () => {
       if (intervalId !== null) {
         clearInterval(intervalId);
         intervalId = null;
       }
     };
-
     const focusListener = navigation.addListener('focus', startPolling);
     const blurListener = navigation.addListener('blur', stopPolling);
-
     return () => {
       focusListener();
       blurListener();
@@ -129,10 +121,12 @@ export default function HomeScreen({ navigation }: HomeProps) {
     };
   }, [navigation, user, abaVoluntario]);
 
-
   return (
     <View style={styles.container}>
-      <Header titulo={`Olá, ${user?.name || ''}`} />
+      <Header
+        titulo={`Olá, ${user?.name || ''}`}
+        alertCount={lista.filter(req => req.status === 'aberto').length}
+      />
 
       {user?.role === 'surdo' ? (
         <View style={styles.areaSurdo}>
