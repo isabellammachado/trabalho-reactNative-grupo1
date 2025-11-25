@@ -5,12 +5,8 @@ export const styles = StyleSheet.create({
   container:{
       flex:1,
       padding: 20,
-      backgroundColor: colors.video
-  },
-
-  box: {
-    flexGrow: 1,
-    marginTop: 90,
+      backgroundColor: colors.video,
+      paddingTop: 90,
   },
   
   tit:{

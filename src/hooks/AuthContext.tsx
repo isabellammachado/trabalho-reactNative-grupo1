@@ -22,7 +22,7 @@ export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-
+  
   const fotoPerfil = user?.fotoPerfil|| fotoDefault;
   
   useEffect(() => {
@@ -45,7 +45,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   async function signOut() {
-    await AsyncStorage.clear();
+    await AsyncStorage.removeItem('@App:user'); 
     setUser(null);
   }
 
@@ -59,7 +59,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     const response = await fetch(`${MOCK_USERS}/${user.id}`, {
-      method: 'PUT',     
+      method: 'PATCH',     
       headers: {
         'Content-Type': 'application/json',
       },
@@ -67,6 +67,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
 
     if (!response.ok) {
+      const txt = await response.text();
+      console.log("Erro do servidor:", txt);
       throw new Error("Falha ao atualizar no MockAPI");
     }
 
@@ -106,10 +108,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } 
     }; 
     
-
-
+    
   return (
-    <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut, loading, editar, fotoPerfil, deletar }}>
+    <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut, loading, editar, fotoPerfil, deletar
+    }}>
       {children}
     </AuthContext.Provider>
   );
