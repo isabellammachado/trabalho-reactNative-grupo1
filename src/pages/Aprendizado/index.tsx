@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, ScrollView, ActivityIndicator, TouchableOpacity, TextInput} from "react-native";
 import { useSenaiSinais} from "../../hooks/useLibras";
 import { SenaiSinalApi } from "../../../TiposGerais"
-import { styles } from "./Style";
+import { styles } from "./style";
 
 export const Aprendizado = () => {
   const { sinais, loading, error, pageAtual, totalPaginas, trocarPagina } = useSenaiSinais(1, 20); 

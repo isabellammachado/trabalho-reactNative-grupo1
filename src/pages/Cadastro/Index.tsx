@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import {Text, View, Alert, Platform } from "react-native";
-import { MOCK_USERS, buscarCep } from "../../services/Api";
+import { MOCK_USERS, buscarCep } from "../../services/api";
 import MeuInput from "../../components/Input/Index";
 import MeuBotao from "../../components/MeuBotao/Index";
 import { styles } from "./Styles";
