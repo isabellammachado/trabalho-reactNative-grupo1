@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native"
+import { Dimensions, Platform, StyleSheet } from "react-native"
 import { colors } from "../../theme/colors";
 const { width } = Dimensions.get('window')
 
@@ -19,7 +19,7 @@ modalConteudo: {
     width: '85%',
     backgroundColor: colors.background,
     borderRadius: 10,
-    padding: 20,
+    padding: Platform.OS === 'ios' ? 20 : 15,
 },
 modalTitle: {
     fontSize: width < 767 ? 20 : 40,

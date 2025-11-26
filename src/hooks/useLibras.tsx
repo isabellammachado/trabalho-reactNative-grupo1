@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { SenaiSinalApi } from './../../TiposGerais';
+import { SenaiSinalApi } from './../types';
 import { buscarSinaisService } from "../services/LibrasServiceApi";
 
 
@@ -11,8 +11,8 @@ export const useSenaiSinais = (paginaInicial = 1, itensPorPagina = 20) => {
   const [totalPaginas, setTotalPaginas] = useState<number | null>(null);
 
   const fetchSinais = async (paginaEscolhida= pageAtual) => {
-    setLoading(true);
-    setError(null);
+    setLoading(true); //Mostra spinner
+    setError(null); //limpa erros 
 
     try {
       const { sinais: novosSinais, totalItems } = await buscarSinaisService(paginaEscolhida, itensPorPagina);
@@ -33,13 +33,21 @@ export const useSenaiSinais = (paginaInicial = 1, itensPorPagina = 20) => {
   const trocarPagina  = (novaPagina: number) => {
     if (novaPagina < 1) return;
     if (totalPaginas && novaPagina > totalPaginas) return;
+    console.log("Total Paginas:", totalPaginas);
+    console.log("SINAIS NA TELA:", sinais);
+
     setPage(novaPagina);
   };
 
 
   useEffect(() => {
+     console.log("Chamando page:", pageAtual);
     fetchSinais(pageAtual);
   }, [pageAtual]);
 
   return { sinais, loading, error, pageAtual, totalPaginas, trocarPagina };
 };
+
+
+
+

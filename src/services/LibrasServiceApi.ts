@@ -1,11 +1,12 @@
 
 import axios from 'axios';
-import { SenaiSinalApi } from '../../TiposGerais';
+import { SenaiSinalApi } from '../types/index';
 
 
 export async function buscarSinaisService(pagina: number, itensPorPagina: number) {
   const response = await axios.get("https://api-senai-libras.senai.br/sinals", {
-    params: { page: pagina, itensPorPagina },
+    params: { page: pagina,      
+      itemsPerPage: itensPorPagina,  },
   });
 
   const data = response.data;
@@ -15,6 +16,7 @@ export async function buscarSinaisService(pagina: number, itensPorPagina: number
     titulo: item.titulo,
     descricaoMovimento: item.descricaoMovimento,
   }));
+  
 
   const totalItems = data["hydra:totalItems"] !== undefined ? data["hydra:totalItems"] : null;
 

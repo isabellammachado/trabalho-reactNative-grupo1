@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, ScrollView, ActivityIndicator, TouchableOpacity, TextInput} from "react-native";
 import { useSenaiSinais} from "../../hooks/useLibras";
-import { SenaiSinalApi } from "../../../TiposGerais"
+import { SenaiSinalApi } from "../../types"
 import { styles } from "./style";
 
 export const Aprendizado = () => {
@@ -20,7 +20,7 @@ export const Aprendizado = () => {
           <Text style={styles.infoText}>Nenhum sinal encontrado.</Text>
         )}
           
-        {sinais.map((sinal: SenaiSinalApi ) => (
+        {sinais.map((sinal: SenaiSinalApi ) => 
           <View key={sinal.id} style={styles.infoContainer}>
             <Text style={styles.textoResultado}>{sinal.titulo}</Text>
             {sinal.descricaoMovimento && (
@@ -28,7 +28,7 @@ export const Aprendizado = () => {
             )}
 
           </View>
-        ))}
+        )}
       </ScrollView>
 
       <View style={styles.paginacaoContainer}>
