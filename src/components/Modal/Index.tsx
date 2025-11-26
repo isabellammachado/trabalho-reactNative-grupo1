@@ -4,9 +4,10 @@ import { styles } from './Styles';
 import { colors } from '../../theme/colors';
 import { Pedido } from '../../types';
 import MeuBotao from './../MeuBotao/Index';
-import { Video, ResizeMode } from 'expo-av'; 
+import { Video, ResizeMode } from 'expo-av';
 
 const DANGER_COLOR = colors.danger || '#D32F2F';
+
 interface PropsModal {
   isOpenModal: boolean;
   setIsOpenModal: (value: boolean) => void;
@@ -44,7 +45,6 @@ export const ModalComponent = ({ isOpenModal, setIsOpenModal, itemSelected, onDe
                 </View>
               ) : null}
 
-              <Text style={styles.title}>{itemSelected.title}</Text>
               <Text style={styles.text}>Nível Necessário: {itemSelected.nivel_necessario}</Text>
               <Text style={styles.tagTxt}>Status: {itemSelected.status}</Text>
               <Text style={styles.info}>📍Local: {itemSelected.location}</Text>

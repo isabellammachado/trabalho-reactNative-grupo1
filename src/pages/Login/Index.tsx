@@ -1,11 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, Alert, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, Alert, Image } from 'react-native';
 import { AuthContext } from '../../hooks/AuthContext';
-import { MOCK_USERS } from '../../services/api';
 import MeuInput from '../../components/Input/Index';
 import MeuBotao from '../../components/MeuBotao/Index';
 import { styles } from './Styles';
-import { User } from '../../types/index';
 import { colors } from './../../theme/colors';
 import { useFonts } from 'expo-font';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -17,6 +15,7 @@ type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 export default function LoginScreen({ navigation }: LoginProps) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+
   const { signIn } = useContext(AuthContext);
 
   const [fontsLoaded] = useFonts({
@@ -28,23 +27,16 @@ export default function LoginScreen({ navigation }: LoginProps) {
   }
 
   async function logar() {
-    try {
-      const req = await fetch(MOCK_USERS);
-      const users: User[] = await req.json();
+    if (!email || !senha) {
+      Alert.alert("Atenção", "Preencha email e senha.");
+      return;
+    }
 
-      if(!email || !senha){
-        Alert.alert("Erro", "Preencha todos os campos");
-        return;
-      }
-      const usuario = users.find(u => u.email === email);
-   
-      if (usuario) {
-        signIn(usuario);
-      } else {
-        Alert.alert("Erro", "Usuário não encontrado");
-      }
-    } catch (e) {
-      Alert.alert("Erro", "Falha na conexão");
+    try {
+      await signIn(email, senha);
+
+    } catch (error: any) {
+      Alert.alert("Erro de Acesso", error.message || "Falha ao tentar logar.");
     }
   }
 
@@ -67,6 +59,7 @@ export default function LoginScreen({ navigation }: LoginProps) {
             value={email}
             setValor={setEmail}
             keyboardType="email-address"
+            autoCapitalize="none"
           />
 
           <MeuInput
@@ -77,6 +70,7 @@ export default function LoginScreen({ navigation }: LoginProps) {
           />
 
           <MeuBotao texto="ENTRAR" onPress={logar} />
+
           <MeuBotao
             texto="CRIAR CONTA"
             cor={colors.secondary}
