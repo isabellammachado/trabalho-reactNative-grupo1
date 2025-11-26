@@ -22,9 +22,7 @@ export interface Pedido {
   status: 'aberto' | 'aceito';
   userId: string;
   cidade: string; 
-
   voluntarioId?: string; 
- 
   video_url?: string | null;
 }
 

@@ -1,11 +1,11 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, Platform, StyleSheet } from "react-native";
 import { colors } from "../../theme/colors";
 const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: Platform.OS === 'ios' ? 20 : 15,
     backgroundColor: colors.video,
     paddingTop: 40,
   },

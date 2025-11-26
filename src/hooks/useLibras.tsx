@@ -11,12 +11,11 @@ export const useSenaiSinais = (paginaInicial = 1, itensPorPagina = 20) => {
   const [totalPaginas, setTotalPaginas] = useState<number | null>(null);
 
   const fetchSinais = async (paginaEscolhida= pageAtual) => {
-    setLoading(true); //Mostra spinner
-    setError(null); //limpa erros 
+    setLoading(true);
+    setError(null); 
 
     try {
       const { sinais: novosSinais, totalItems } = await buscarSinaisService(paginaEscolhida, itensPorPagina);
-        //é uma destructuring para separar novosSinais e totalItems
       setSinais(novosSinais as SenaiSinalApi[]);
 
       if (totalItems !== null && totalItems !== undefined) {
@@ -41,7 +40,6 @@ export const useSenaiSinais = (paginaInicial = 1, itensPorPagina = 20) => {
 
 
   useEffect(() => {
-     console.log("Chamando page:", pageAtual);
     fetchSinais(pageAtual);
   }, [pageAtual]);
 

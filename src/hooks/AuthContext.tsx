@@ -12,7 +12,6 @@ interface AuthContextData {
   signIn: (email: string, pass: string) => Promise<void>;
   signOut: () => Promise<void>;
   editar: (novosDados: Partial<User>) => Promise<void>;
-
   fotoPerfil: string | number;
   deletar: () => Promise<void>;
 }
@@ -94,7 +93,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       Alert.alert("Sucesso", "Perfil atualizado!");
 
     } catch (error) {
-      console.error("Erro ao atualizar usuário:", error);
       Alert.alert("Erro", "Não foi possível atualizar o perfil.");
     }
   };

@@ -1,5 +1,5 @@
 export type BatchMessage = {
-    key?: string;      
+    key: string;      
     type: number;     
     number: string;   
     msg: string;      

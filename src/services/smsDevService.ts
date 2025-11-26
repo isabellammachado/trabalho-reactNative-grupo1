@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 import { BatchMessage, SmsDevBatchResponse, SmsDevResponseItem } from '../@types/smsdev';
 
 const SMSDEV_API_URL = 'https://api.smsdev.com.br/v1/send';
-export const BASE_KEY = 'MH4MFJ2X6U37HF5889C6A24MWHWQE2QSES321NVNSNZNXJZW8DQASQNIZ1CTMTQLN69J31W0XBU8M4I5VM07TEBETFWOHL9FT971KWX6PKIEU5OUNC0F710HL67LM5GQ' ;
+export const BASE_KEY = '2JYI2SRQF4M4E6YXN1AL1UY7O8E2GEELW8U9SLWI5JC6U25XLS9UHFSQSCKJ76CCDHE6SVFTKNRVW35A1OWYU7CPLFSZS9UI0QCNXLR6G1QDJY1T1HH1DP1YW65K4ACL' ;
 export const sendBatchAlerts = async (
     alertsToSend: BatchMessage[]
 ): Promise<boolean> => {
