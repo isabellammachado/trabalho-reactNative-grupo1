@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { Alert, Image, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { useContext, useState } from "react";
+import { Alert, Image, Platform} from "react-native";
 import * as ImagePicker from 'expo-image-picker'; 
 import { View, Text, Modal, TextInput } from 'react-native';
 import MeuBotao from '../../components/MeuBotao/Index';
 import { styles } from './style';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import fotoDefault from  '../../../assets/images.png';
 import { colors } from "../../theme/colors";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";

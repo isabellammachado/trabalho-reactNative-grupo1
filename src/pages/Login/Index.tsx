@@ -50,7 +50,14 @@ export default function LoginScreen({ navigation }: LoginProps) {
 
   return (
     <View style={styles.container}>
-      <KeyboardAwareScrollView keyboardShouldPersistTaps="handled" > 
+      <KeyboardAwareScrollView
+              keyboardShouldPersistTaps="handled"
+              enableOnAndroid={true}
+              enableAutomaticScroll={true}
+              extraHeight={150}
+              extraScrollHeight={150}
+              contentContainerStyle={{ flexGrow: 1, padding: 16 }}
+            >
         <View>
           <Image style={styles.surdo} source={require('../../../assets/imagem-surdo.jpg')} />
           <Text style={styles.logo}>MÃOS QUE FALAM</Text>
