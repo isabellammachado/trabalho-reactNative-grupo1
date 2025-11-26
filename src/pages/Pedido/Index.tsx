@@ -178,7 +178,7 @@ export default function CriarPedidoScreen({ navigation }: Props) {
 
       if (!response.ok) throw new Error(`Status ${response.status}`);
 
-      Alert.alert("Sucesso", "Ajuda solicitada! Aguarde um voluntário.");
+      Alert.alert("Sucesso", "Ajuda solicitada! Aguarde um SMS do voluntário.");
       navigation.goBack();
     } catch (error) {
       Alert.alert("Erro", "Falha ao criar pedido");
