@@ -80,6 +80,7 @@ export default function CriarPedidoScreen({ navigation }: Props) {
       quality: 0.5,
       videoMaxDuration: 60,
     });
+
     if (!result.canceled && result.assets && result.assets.length > 0) {
       setVideoUri(result.assets[0].uri);
       Alert.alert("Sucesso", "Vídeo gravado!");
@@ -136,14 +137,9 @@ export default function CriarPedidoScreen({ navigation }: Props) {
     }
   };
 
-  const onChangeDate = (event: DateTimePickerEvent, selectedDate?: Date) => {
+  const onChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
     const currentDate = selectedDate || dataSelecionada;
     setShowDatePicker(false);
-    setDataSelecionada(currentDate);
-  };
-
-  const onChangeTime = (event: DateTimePickerEvent, selectedDate?: Date) => {
-    const currentDate = selectedDate || dataSelecionada;
     setShowTimePicker(false);
     setDataSelecionada(currentDate);
   };
@@ -276,7 +272,7 @@ export default function CriarPedidoScreen({ navigation }: Props) {
                 value={dataSelecionada}
                 mode="date"
                 display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-                onChange={onChangeDate}
+                onChange={onChange}
                 minimumDate={new Date()}
               />
             )}
@@ -286,7 +282,7 @@ export default function CriarPedidoScreen({ navigation }: Props) {
                 value={dataSelecionada}
                 mode="time"
                 display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-                onChange={onChangeTime}
+                onChange={onChange}
               />
             )}
 
