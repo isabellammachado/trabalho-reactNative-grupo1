@@ -10,11 +10,12 @@ import { Pedido } from '../../types/index';
 import { colors } from '../../theme/colors';
 import { ModalComponent } from '../../components/Modal/Index';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../@types/navigation';
 
-type RootStackParamList = {
-  Home: undefined;
-  CriarPedido: undefined;
-};
+// type RootStackParamList = {
+//   Home: undefined;
+//   CriarPedido: undefined;
+// };
 type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const POLLING_INTERVAL = 5000;
@@ -184,18 +185,3 @@ export default function HomeScreen({ navigation }: HomeProps) {
     </View>
   );
 }
-
-const stylesVoluntario = StyleSheet.create({
-  tabsContainer: {
-    flexDirection: 'row',
-    marginHorizontal: 20,
-    marginTop: 10,
-    backgroundColor: '#E0E0E0',
-    borderRadius: 8,
-    padding: 4,
-  },
-  tab: { flex: 1, paddingVertical: 10, alignItems: 'center', borderRadius: 6 },
-  tabActive: { backgroundColor: '#FFF', elevation: 2 },
-  tabText: { fontWeight: '600', color: '#777' },
-  tabTextActive: { color: colors.primary, fontWeight: 'bold' }
-});

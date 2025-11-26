@@ -7,8 +7,12 @@ import { styles } from './Styles';
 import { colors } from './../../theme/colors';
 import { useFonts } from 'expo-font';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { RootStackParamList } from '../../@types/navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-export default function LoginScreen({ navigation }: any) {
+type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
+
+export default function LoginScreen({ navigation }: LoginProps) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
@@ -38,7 +42,14 @@ export default function LoginScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
-      <KeyboardAwareScrollView keyboardShouldPersistTaps="handled" >
+      <KeyboardAwareScrollView
+              keyboardShouldPersistTaps="handled"
+              enableOnAndroid={true}
+              enableAutomaticScroll={true}
+              extraHeight={150}
+              extraScrollHeight={150}
+              contentContainerStyle={{ flexGrow: 1, padding: 16 }}
+            >
         <View>
           <Image style={styles.surdo} source={require('../../../assets/imagem-surdo.jpg')} />
           <Text style={styles.logo}>MÃOS QUE FALAM</Text>

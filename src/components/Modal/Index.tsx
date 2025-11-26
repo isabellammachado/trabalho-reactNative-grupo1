@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { Modal, View, ActivityIndicator, Text, StyleSheet } from 'react-native';
-import { styles } from './Styles';
+import { Modal, View, ActivityIndicator, Text} from 'react-native';
+import { styles } from './Styles'; 
 import { colors } from '../../theme/colors';
 import { Pedido } from '../../types';
 import MeuBotao from './../MeuBotao/Index';
