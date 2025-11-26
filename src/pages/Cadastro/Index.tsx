@@ -4,7 +4,7 @@ import { MOCK_USERS, buscarCep } from "../../services/api";
 import MeuInput from "../../components/Input/Index";
 import MeuBotao from "../../components/MeuBotao/Index";
 import { styles } from "./Styles";
-import { Role, Nivel } from "../../types/index";
+import { Role, Nivel, User } from "../../types/index";
 import { colors } from "../../theme/colors";
 import { AuthContext } from "../../hooks/AuthContext";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -58,6 +58,16 @@ export default function CadastroScreen({
     if(!form.telefone){
       return Alert.alert("Erro", "O telefone é obrigatório")
     }
+    const requisicao = await fetch(MOCK_USERS);
+      const users: User[] = await requisicao.json();
+      const existe = users.find((user) => user.email === form.email);
+
+    if (existe) {
+      Alert.alert("Erro", "Esse e-mail já está cadastrado!");
+      return;
+
+    }
+    
     const novoUsuario = {
       name: form.name,
       email: form.email,
