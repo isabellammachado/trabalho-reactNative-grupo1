@@ -39,7 +39,7 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
         }
     };
 ;
-    const handleSave3 = async () => {
+    const handleSave = async () => {
         const novosDados: Partial<User> = {};
 
         if (name.trim() !== "") novosDados.name = name;
@@ -102,8 +102,8 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
                     <Text style={styles.texto}>Telefone:</Text>
                     <TextInput style={styles.input} value={telefone} onChangeText={setTelefone} />
 
-                    <MeuBotao texto="SALVAR" cor={colors.secondary} onPress={handleSave3} />
-                    <View style={{height: 10}} /> 
+                    <MeuBotao texto="SALVAR" cor={colors.secondary} onPress={handleSave} />
+                    <View/> 
                     <MeuBotao texto="CANCELAR" cor={colors.danger} onPress={onClose} />
                     </KeyboardAwareScrollView>
                 </View>
