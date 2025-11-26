@@ -12,10 +12,6 @@ import { ModalComponent } from '../../components/Modal/Index';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../@types/navigation';
 
-// type RootStackParamList = {
-//   Home: undefined;
-//   CriarPedido: undefined;
-// };
 type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const POLLING_INTERVAL = 5000;
