@@ -11,7 +11,7 @@ import { AuthContext } from "../../hooks/AuthContext";
 import { User } from "../../types";
 
 
-export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
+export const ModalEdicao = ({ isVisible, onClose, usuarioAtual}) => {
     const [name, setName] = useState(usuarioAtual?.name || '');
     const [password, setPassword] = useState(usuarioAtual?.password || '');
     const [telefone, setTelefone] = useState(usuarioAtual?.telefone || '');
@@ -42,12 +42,12 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
     const handleSave = async () => {
         const novosDados: Partial<User> = {};
 
-        if (name.trim() !== "") novosDados.name = name;
+        if (name !== "") novosDados.name = name;
 
-        if (password && password.trim() !== "") {
+        if (password && password !== "") {
             novosDados.password = password;
         }
-        if (telefone.trim() !== "") novosDados.telefone = telefone;
+        if (telefone !== "") novosDados.telefone = telefone;
         if (fotoPerfilURI) {
             novosDados.fotoPerfil = fotoPerfilURI;
         }
@@ -64,7 +64,6 @@ export const ModalEdicao = ({ isVisible, onClose, onSave, usuarioAtual}) => {
 
     return (
         <Modal
-        
             animationType="slide"
             transparent={true}
             visible={isVisible}
