@@ -1,17 +1,16 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../theme/colors';
 
 export const styles = StyleSheet.create({
   container:{
       flex:1,
       padding: 20,
-      backgroundColor: colors.video,
+      backgroundColor: '#e3f2fd',
       paddingTop: 90,
   },
   
   tit:{
     fontSize: 24,
-    color: colors.primary,
+    color: '#1591EA',
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 10,
@@ -20,7 +19,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 10,
     marginBottom: 5,
-    color: colors.text,
+    color: '#4F4F4F',
   },
   row: {
     flexDirection: 'column',
