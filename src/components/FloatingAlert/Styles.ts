@@ -5,7 +5,7 @@ import { colors } from '../../theme/colors';
 export const styles = StyleSheet.create({
     container: {
     position: 'absolute', 
-    top: 60, 
+    top: 80, 
     left: 0,
     right: 0,
     backgroundColor: colors.vermelhoAlerta,
