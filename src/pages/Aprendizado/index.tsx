@@ -3,6 +3,7 @@ import { View, Text, ScrollView, ActivityIndicator, TouchableOpacity, TextInput}
 import { useSenaiSinais} from "../../hooks/useLibras";
 import { SenaiSinalApi } from "../../types"
 import { styles } from "./style";
+import { colors } from "../../theme/colors";
 
 export const Aprendizado = () => {
   const { sinais, loading, error, pageAtual, totalPaginas, trocarPagina } = useSenaiSinais(1, 20); 
@@ -12,7 +13,7 @@ export const Aprendizado = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Glossário de Sinais</Text>
 
-      {loading && <ActivityIndicator size="large" color="#008B8B" />}
+      {loading && <ActivityIndicator size="large" color={colors.secondary} />}
       {error && <Text style={styles.errorText}>{error}</Text>}
 
       <ScrollView >

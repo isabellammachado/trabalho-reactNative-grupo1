@@ -3,7 +3,6 @@ import { colors } from '../../theme/colors';
 
 export const styles = StyleSheet.create({
   input: {
-    backgroundColor: colors.white,
     width: '100%',
     padding: 12,
     borderRadius: 8,

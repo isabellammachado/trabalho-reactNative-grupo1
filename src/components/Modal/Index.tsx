@@ -52,14 +52,14 @@ export const ModalComponent = ({ isOpenModal, setIsOpenModal, itemSelected, onDe
               {itemSelected.status === 'aberto' && itemSelected.userId && (
                 <MeuBotao
                   texto="EXCLUIR PEDIDO"
-                  cor={DANGER_COLOR}
+                  cor={colors.danger}
                   onPress={onDelete}
                 />
               )}
 
               <MeuBotao
                 texto="FECHAR"
-                cor="#FF6B6B"
+                cor={colors.danger}
                 onPress={() => setIsOpenModal(false)}
               />
             </>

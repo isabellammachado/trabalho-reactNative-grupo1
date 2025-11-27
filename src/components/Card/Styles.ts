@@ -14,8 +14,7 @@ export const styles = StyleSheet.create({
   },
   titulo: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: colors.primary,
+    fontWeight: 'bold'
   },
   info: {
     color: colors.text,
