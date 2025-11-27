@@ -18,7 +18,8 @@ export default function Header({ titulo, alertCount = 0 }: HeaderProps) {
   const alerta: SurdoAlert = {
     id: '1',
     mensagem: 'Alerta simples',
-    hora: new Date().toLocaleTimeString()
+    hora: new Date().toLocaleTimeString(),
+    telefone: '41999999999'
   };
 
   useEffect(() => {
@@ -33,7 +34,6 @@ export default function Header({ titulo, alertCount = 0 }: HeaderProps) {
     <View style={styles.box}>
       <Text style={styles.txt}>{titulo}</Text>
 
-      {}
       {user?.role === 'voluntario' && mostrarAlert && (
         <FloatingAlert
           alertData={alerta}
@@ -41,7 +41,6 @@ export default function Header({ titulo, alertCount = 0 }: HeaderProps) {
         />
       )}
 
-      {}
       {alertCount > 0 && (
         <View style={styles.alertBadge}>
           <Text style={styles.alertBadgeText}>{alertCount}</Text>
