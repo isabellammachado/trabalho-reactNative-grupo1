@@ -1,10 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 import { BatchMessage, SmsDevBatchResponse, SmsDevResponseItem } from '../@types/smsdev';
+import { SMSDEV_API_URL, SMSDEV_API_KEY } from '../utils/SmsConfig';
 
-const SMSDEV_API_URL = 'https://api.smsdev.com.br/v1/send';
-
-// Substitua pela sua chave real da SMSDev
-export const BASE_KEY = 'SUA_CHAVE_DE_API_AQUI';
+export const BASE_KEY = SMSDEV_API_KEY;
 
 export const sendBatchAlerts = async (
     alertsToSend: BatchMessage[]
