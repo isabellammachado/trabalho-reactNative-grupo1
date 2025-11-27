@@ -13,15 +13,21 @@ interface FloatingAlertProps {
 
 export default function FloatingAlert({ alertData, onDismiss }: FloatingAlertProps) {
     const { user } = useContext(AuthContext);
-    const telefoneDoUsuario = user?.telefone;
+
+    const telefoneDoSurdo = alertData.telefone;
 
     const handlePress = () => {
+        if (!telefoneDoSurdo) {
+            Alert.alert("Erro", "Telefone do usuário surdo não disponível.");
+            return;
+        }
+
         const alertsToSend: BatchMessage[] = [
             {
                 key: BASE_KEY,
                 type: 9,
-                number: telefoneDoUsuario,
-                msg: `🚨 URGENTE: Solicitação de usuário surdo! ID: ${alertData.id}`
+                number: Number(String(telefoneDoSurdo).replace(/\D/g, '')),
+                msg: "Ajuda aceita, aguarde no local." 
             }
         ];
 
@@ -61,17 +67,14 @@ export default function FloatingAlert({ alertData, onDismiss }: FloatingAlertPro
             onPress={handlePress}
             activeOpacity={0.9}
         >
-            {}
             <Text style={styles.text}>
                 🚨 URGENTE: Solicitação de Usuário Surdo!
             </Text>
 
-            {}
             <Text style={styles.time}>
                 Recebido às {alertData.hora}
             </Text>
 
-            {}
             <Text style={styles.time}>
                 (Toque para confirmar o atendimento)
             </Text>
