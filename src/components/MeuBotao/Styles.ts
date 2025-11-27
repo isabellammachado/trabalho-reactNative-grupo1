@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   txt: {
-    color: colors.white,
     fontWeight: 'bold',
     fontSize: 16,
   }

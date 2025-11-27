@@ -10,7 +10,7 @@ interface Props extends TextInputProps {
 export default function MeuInput({ setValor, ...rest }: Props) {
   return (
     <TextInput
-      style={styles.input}
+      style={[styles.input, { backgroundColor: colors.white }]}
       onChangeText={setValor}
       placeholderTextColor={colors.gray}
       {...rest}

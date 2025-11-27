@@ -11,7 +11,7 @@ interface Props extends TouchableOpacityProps {
 export default function MeuBotao({ texto, cor = colors.primary, ...rest }: Props) {
   return (
     <TouchableOpacity style={[styles.btn, { backgroundColor: cor }]} activeOpacity={0.8} {...rest}>
-      <Text style={styles.txt}>{texto}</Text>
+      <Text style={[styles.txt, { color: colors.white }]}>{texto}</Text>
     </TouchableOpacity>
   );
 }
