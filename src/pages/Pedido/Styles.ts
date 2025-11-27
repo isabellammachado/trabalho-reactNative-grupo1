@@ -1,10 +1,9 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../theme/colors';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: '#F5F5F5',
   },
   box: {
     padding: 20,
@@ -12,7 +11,7 @@ export const styles = StyleSheet.create({
   lbl: {
     fontWeight: 'bold',
     marginTop: 15,
-    color: colors.text,
+    color: '#4F4F4F',
   },
   row: {
     flexDirection: 'row',
@@ -22,18 +21,18 @@ export const styles = StyleSheet.create({
   },
 
   tag: {
-    backgroundColor: colors.white,
+    backgroundColor: '#FFFFFF',
     padding: 10,
     borderRadius: 20,
     marginRight: 10,
     borderWidth: 1,
-    borderColor: colors.primary,
+    borderColor: '#1591EA',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5
   },
-  tagSelected: { backgroundColor: colors.primary },
-  tagText: { color: colors.primary, fontWeight: 'bold' },
+  tagSelected: { backgroundColor: '#1591EA' },
+  tagText: { color: '#1591EA', fontWeight: 'bold' },
 
   switchContainer: {
     flexDirection: 'row',
@@ -43,9 +42,9 @@ export const styles = StyleSheet.create({
   },
 
   inputLocation: {
-    backgroundColor: colors.white,
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: colors.gray,
+    borderColor: '#9f9e9eff',
     borderRadius: 8,
     padding: 12,
     fontSize: 16,
@@ -66,7 +65,7 @@ export const styles = StyleSheet.create({
   },
 
   btnAgora: {
-    backgroundColor: colors.danger,
+    backgroundColor: '#FF6B6B',
     flexDirection: 'row',
     padding: 12,
     borderRadius: 8,
@@ -78,17 +77,17 @@ export const styles = StyleSheet.create({
   dateBox: {
     flex: 1,
     borderWidth: 1,
-    borderColor: colors.gray,
+    borderColor: '#9f9e9eff',
     borderRadius: 8,
     padding: 10,
-    backgroundColor: colors.white,
+    backgroundColor: '#FFFFFF',
   },
-  dateLabel: { fontSize: 12, color: colors.text, marginBottom: 2 },
-  dateValue: { fontSize: 16, color: colors.text, fontWeight: '500' },
+  dateLabel: { fontSize: 12, color: '#4F4F4F', marginBottom: 2 },
+  dateValue: { fontSize: 16, color: '#4F4F4F', fontWeight: '500' },
 
   btnVideo: {
     borderWidth: 2,
-    borderColor: colors.primary,
+    borderColor: '#1591EA',
     borderStyle: 'dashed',
     borderRadius: 10,
     height: 60,
@@ -102,7 +101,7 @@ export const styles = StyleSheet.create({
 
   pickerContainer: {
     borderWidth: 1,
-    borderColor: colors.gray,
+    borderColor: '#9f9e9eff',
     borderRadius: 8,
     marginBottom: 20,
     backgroundColor: '#FFF'

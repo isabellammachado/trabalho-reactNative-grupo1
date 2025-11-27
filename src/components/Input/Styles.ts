@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../theme/colors';
 
 export const styles = StyleSheet.create({
   input: {
@@ -7,8 +6,8 @@ export const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: '#DDDDDD',
     marginBottom: 12,
-    color: colors.text
+    color: '#4F4F4F'
   }
 });

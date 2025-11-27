@@ -1,24 +1,22 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../theme/colors";
-
 
 export const styles = StyleSheet.create({
   container: {
      flex: 1,
-      backgroundColor: colors.video
+      backgroundColor: '#e3f2fd'
     },
 
   box: { 
     padding: 20 
 },
   lbl: {
-     color: colors.text, 
+     color: '#4F4F4F', 
      marginTop: 15 
     },
   val: {
      fontSize: 18,
       fontWeight: 'bold', 
-      color: colors.black
+      color: '#000000'
     },
      profileImage: {
         width: 100,
@@ -26,8 +24,8 @@ export const styles = StyleSheet.create({
         borderRadius: 50,
         marginBottom: 15,
         borderWidth: 3,
-        borderColor: colors.secondary,
-        backgroundColor: colors.white,
+        borderColor: '#008B8B',
+        backgroundColor: '#FFFFFF',
     }
 
 

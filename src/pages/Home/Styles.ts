@@ -1,35 +1,34 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../theme/colors';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.video,
+    backgroundColor: '#e3f2fd',
   },
   sub: {
     textAlign: 'center',
     padding: 10,
-    color: colors.text,
+    color: '#4F4F4F',
     fontWeight: 'bold',
     marginTop: 10,
   },
   vazio: {
     textAlign: 'center',
     marginTop: 50,
-    color: colors.text,
+    color: '#4F4F4F',
   },
   areaSurdo: {
     padding: 20,
-    backgroundColor: colors.white,
+    backgroundColor: '#FFFFFF',
     marginBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: colors.border
+    borderBottomColor: '#DDDDDD'
   },
   divisor: {
     marginTop: 20,
     fontSize: 18,
     fontWeight: 'bold',
-    color: colors.primary,
+    color: '#1591EA',
   },
    tabsContainer: {
     flexDirection: 'row',
@@ -56,7 +55,7 @@ export const styles = StyleSheet.create({
      color: '#777' 
     },
   tabTextActive: {
-     color: colors.primary, 
+     color: '#1591EA', 
      fontWeight: 'bold' 
     }
 

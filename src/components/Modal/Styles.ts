@@ -1,5 +1,5 @@
 import { Dimensions, Platform, StyleSheet } from 'react-native';
-import { colors } from '../../theme/colors';
+
 const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   card: {
-    backgroundColor: colors.white,
+    backgroundColor: '#FFFFFF',
     padding: Platform.OS === 'ios' ? 20 : 10,
     borderRadius: 10,
     alignItems: 'center',
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
      fontSize: width < 767 ? 20 : 40,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: colors.primary,
+    color: '#1591EA',
     textTransform: 'uppercase',
   },
 
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     fontSize: width < 767 ? 13 : 40,
     marginBottom: 10,
     fontWeight: 'bold',
-    color: colors.text,
+    color: '#4F4F4F',
     textTransform: 'uppercase',
     
   },
@@ -47,12 +47,12 @@ export const styles = StyleSheet.create({
   tagTxt: {
     fontSize: width < 767 ? 16 : 40,
     fontWeight: 'bold',
-    color: colors.secondary,
+    color: '#008B8B',
     textTransform: 'uppercase',
     marginBottom: 10,
   },
   info: {
-    color: colors.text,
+    color: '#4F4F4F',
     fontWeight: 'bold',
     marginTop: 4,
     textTransform: 'uppercase',

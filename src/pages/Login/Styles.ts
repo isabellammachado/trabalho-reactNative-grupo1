@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../theme/colors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -7,7 +6,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 20,
     paddingTop: 100,
-    backgroundColor: colors.video,
+    backgroundColor: '#e3f2fd',
   },
 
   surdo: {
@@ -21,7 +20,7 @@ export const styles = StyleSheet.create({
 
   logo: {
     fontSize: 28,
-    color: colors.primary,
+    color: '#1591EA',
     textAlign: 'center',
     marginBottom: 40,
     fontFamily: 'Merriweather',

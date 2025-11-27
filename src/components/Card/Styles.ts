@@ -1,14 +1,13 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../theme/colors';
 
 export const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.white,
+    backgroundColor: '#FFFFFF',
     padding: 15,
     marginBottom: 10,
     borderRadius: 10,
     elevation: 2, 
-    shadowColor: colors.black, 
+    shadowColor: '#000000', 
     shadowOpacity: 0.1,
     shadowRadius: 4,
   },
@@ -17,11 +16,11 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   info: {
-    color: colors.text,
+    color: '#4F4F4F',
     marginTop: 4,
   },
   tag: {
-    backgroundColor: colors.background,
+    backgroundColor: '#F5F5F5',
     alignSelf: 'flex-start',
     paddingHorizontal: 8,
     paddingVertical: 4,
@@ -32,7 +31,7 @@ export const styles = StyleSheet.create({
   tagTxt: {
     fontSize: 12,
     fontWeight: 'bold',
-    color: colors.secondary,
+    color: '#008B8B',
     textTransform: 'uppercase',
   }
 });

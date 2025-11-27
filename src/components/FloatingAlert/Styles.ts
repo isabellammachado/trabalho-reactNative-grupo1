@@ -1,5 +1,4 @@
-import { StyleSheet } from 'react-native';
-import { colors } from '../../theme/colors'; 
+import { StyleSheet } from 'react-native'; 
 
 
 export const styles = StyleSheet.create({
@@ -8,7 +7,7 @@ export const styles = StyleSheet.create({
     top: 80, 
     left: 0,
     right: 0,
-    backgroundColor: colors.vermelhoAlerta,
+    backgroundColor: '#D93644',
     paddingVertical: 15,
     paddingHorizontal: 20,
     alignItems: 'center',
@@ -18,14 +17,14 @@ export const styles = StyleSheet.create({
     },
 
     text: { 
-    color: colors.white, 
+    color: '#FFFFFF', 
     fontWeight: 'bold',
     fontSize: 16,
     textAlign: 'center',
     },
 
     time: {
-    color: colors.floating, 
+    color: '#FFD1D5', 
     fontSize: 12,
     marginTop: 4,
     },

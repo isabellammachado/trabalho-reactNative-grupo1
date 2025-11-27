@@ -1,5 +1,5 @@
 import { Dimensions, Platform, StyleSheet } from "react-native"
-import { colors } from "../../theme/colors";
+
 const { width } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
@@ -17,7 +17,7 @@ fundoModal: {
 
 modalConteudo: {
     width: '85%',
-    backgroundColor: colors.background,
+    backgroundColor: '#F5F5F5',
     borderRadius: 10,
     padding: Platform.OS === 'ios' ? 20 : 15,
 },
@@ -26,11 +26,11 @@ modalTitle: {
     fontWeight: 'bold',
     marginBottom: 15,
     textAlign: 'center',
-    color: colors.text,
+    color: '#4F4F4F',
 },
 input: {
     height: 40,
-    borderColor: colors.border,
+    borderColor: '#DDDDDD',
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 10,
@@ -43,7 +43,7 @@ profileImage: {
   borderRadius: 50,
   marginBottom: 15,
   borderWidth: 3,
-  borderColor: colors.secondary,
+  borderColor: '#008B8B',
   backgroundColor: '#ddd',
 },
 

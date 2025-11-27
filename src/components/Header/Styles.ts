@@ -1,23 +1,22 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../theme/colors';
 
 export const styles = StyleSheet.create({
   box: {
     width: '100%',
     padding: 20,
     paddingTop: 50,
-    backgroundColor: colors.primary,
+    backgroundColor: '#1591EA',
     flexDirection: 'row', 
     justifyContent: 'center',
     alignItems: 'center',
   },
   txt: {
-    color: colors.white,
+    color: '#FFFFFF',
     fontSize: 20,
     fontWeight: 'bold',
   },
         alertBadge: { 
-        backgroundColor: colors.vermelhoAlerta,
+        backgroundColor: '#D93644',
         borderRadius: 12,           
         width: 24,                  
         height: 24,                 
