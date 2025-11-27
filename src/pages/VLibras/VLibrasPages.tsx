@@ -8,7 +8,6 @@ export default function VLibrasScreen() {
   return (
     <View style={styles.container}>
       <Header titulo="Ferramenta VLibras" />
-      {/* Carrega o site oficial do governo que contém o widget */}
       <WebView 
         source={{ uri: 'https://vlibras.gov.br/' }}
         style={{ flex: 1 }}

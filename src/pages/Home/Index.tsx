@@ -28,20 +28,27 @@ export default function HomeScreen({ navigation }: HomeProps) {
     setIsModalOpen(true);
   };
 
-  const carregar = () => {
-    if (!user) return;
-    fetch(MOCK_REQUESTS).then(r => r.json()).then((data: Pedido[]) => {
+const carregar = () => {
+  if (!user) return;
+
+  fetch(MOCK_REQUESTS)
+    .then(r => r.json())
+    .then((data: Pedido[]) => {
       if (user.role === 'surdo') {
         setLista(data.filter(req => req.userId === user.id));
       } else {
         if (abaVoluntario === 'meus') {
-          setLista(data.filter(req => (req as any).voluntarioId === user.id));
+          setLista(
+            data.filter((req: Pedido) => req.voluntarioId === user.id)
+          );
         } else {
           setLista(data.filter(req => req.status === 'aberto'));
         }
       }
-    }).catch(() => {});
-  };
+    })
+    .catch(() => {});
+};
+
 
   const excluirPedido = (id: string) => {
     Alert.alert("Atenção", "Tem certeza que deseja cancelar este pedido?", [
@@ -78,7 +85,7 @@ export default function HomeScreen({ navigation }: HomeProps) {
 
             setLista(prev =>
               prev.map(p =>
-                p.id === item.id ? { ...p, status: 'aceito', voluntarioId: user?.id } as any : p
+                p.id === item.id ? { ...p, status: 'aceito', voluntarioId: user?.id } : p
               )
             );
 

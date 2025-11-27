@@ -31,13 +31,10 @@ export const useSenaiSinais = (paginaInicial = 1, itensPorPagina = 20) => {
 
   const trocarPagina  = (novaPagina: number) => {
     if (novaPagina < 1) return;
-    if (totalPaginas && novaPagina > totalPaginas) return;
-    console.log("Total Paginas:", totalPaginas);
-    console.log("SINAIS NA TELA:", sinais);
+    if (totalPaginas && novaPagina > totalPaginas) return
 
     setPage(novaPagina);
   };
-
 
   useEffect(() => {
     fetchSinais(pageAtual);

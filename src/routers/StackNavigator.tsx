@@ -20,13 +20,11 @@ export const  StackNavigator = () => {
       id={undefined}
        screenOptions={{ headerShown: false }}>
         {!signed ? (
-          // MODO DESLOGADO
           <Stack.Group>
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Cadastro" component={CadastroScreen} />
           </Stack.Group>
         ) : (
-          // MODO LOGADO
           <Stack.Group>
             <Stack.Screen name="AppTabs" component={ TabsRouters } />
             <Stack.Screen name="CriarPedido" component={CriarPedidoScreen} />
