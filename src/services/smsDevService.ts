@@ -22,7 +22,7 @@ export const sendBatchAlerts = async (
         const responseArray = response.data; 
       
         const sucessoTotal = responseArray.every(
-            (item: SmsDevResponseItem) => item.statusCode === "001" || item.statusCode === "1"
+            (item: SmsDevResponseItem) => item.statusCode === "001" || item.statusCode === "1" 
         );
 
         if (!sucessoTotal) {

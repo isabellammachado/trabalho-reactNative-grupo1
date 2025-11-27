@@ -7,8 +7,8 @@ export const styles = StyleSheet.create({
     padding: 15,
     marginBottom: 10,
     borderRadius: 10,
-    elevation: 2, // Sombra Android
-    shadowColor: colors.black, // Sombra iOS
+    elevation: 2, 
+    shadowColor: colors.black, 
     shadowOpacity: 0.1,
     shadowRadius: 4,
   },

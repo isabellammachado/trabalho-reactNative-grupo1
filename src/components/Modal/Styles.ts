@@ -76,7 +76,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     top: 10,
     left: 10,
-    zIndex: 10, // Fica por cima do vídeo
+    zIndex: 10, 
     color: '#FFF',
     backgroundColor: 'rgba(0,0,0,0.6)',
     paddingHorizontal: 8,

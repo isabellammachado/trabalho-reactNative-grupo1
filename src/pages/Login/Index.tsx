@@ -35,7 +35,7 @@ export default function LoginScreen({ navigation }: LoginProps) {
     try {
       await signIn(email, senha);
 
-    } catch (error: any) {
+    } catch (error) {
       Alert.alert("Erro de Acesso", error.message || "Falha ao tentar logar.");
     }
   }

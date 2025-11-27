@@ -49,8 +49,6 @@ export default function FloatingAlert({ alertData, onDismiss }: FloatingAlertPro
 
                         if (sucesso) {
                             Alert.alert("Sucesso", "Notificação enviada com sucesso.");
-                        } else {
-                            Alert.alert("Erro", "Falha ao enviar notificação.");
                         }
 
                         onDismiss();
