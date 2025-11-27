@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, Platform, StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
 const { width } = Dimensions.get('window');
 
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: colors.white,
-    padding: 20,
+    padding: Platform.OS === 'ios' ? 20 : 10,
     borderRadius: 10,
     alignItems: 'center',
     width: '90%', 

@@ -93,7 +93,7 @@ export default function CadastroScreen({
     }
 
     const userCriado = await response.json(); 
-    await signIn(userCriado); 
+    await signIn(userCriado.email, userCriado.password); 
 
     Alert.alert("Sucesso", "Cadastrado!");
   } catch (error) {

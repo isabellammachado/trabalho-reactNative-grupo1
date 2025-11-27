@@ -14,9 +14,9 @@ interface Props {
 
 export default function CardPedido({ item, onAceitar, esconderBotao, openCard }: Props) {
   return (
-    <TouchableOpacity onPress={openCard} style={styles.card}>
+    <TouchableOpacity onPress={openCard} style={styles.card} >
       <View >
-        <Text style={styles.titulo}>{item.title}</Text>
+        <Text style={[styles.titulo, { color: colors.primary }]}>{item.title}</Text>
 
         <Text style={styles.info}>📅 {new Date(item.data_agendamento).toLocaleString()}</Text>
 

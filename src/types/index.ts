@@ -22,9 +22,7 @@ export interface Pedido {
   status: 'aberto' | 'aceito';
   userId: string;
   cidade: string; 
-
   voluntarioId?: string; 
- 
   video_url?: string | null;
 }
 
@@ -32,5 +30,12 @@ export interface SenaiSinal {
   id: number;
   titulo: string;
   descricaoMovimento: string;
+}
+
+export interface SenaiSinalApi { 
+  id: number
+  titulo: string;
+  descricaoMovimento: string | null;
+  
 }
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { SenaiSinalApi } from './../../TiposGerais';
+import { SenaiSinalApi } from './../types';
 import { buscarSinaisService } from "../services/LibrasServiceApi";
 
 
@@ -12,11 +12,10 @@ export const useSenaiSinais = (paginaInicial = 1, itensPorPagina = 20) => {
 
   const fetchSinais = async (paginaEscolhida= pageAtual) => {
     setLoading(true);
-    setError(null);
+    setError(null); 
 
     try {
       const { sinais: novosSinais, totalItems } = await buscarSinaisService(paginaEscolhida, itensPorPagina);
-        //é uma destructuring para separar novosSinais e totalItems
       setSinais(novosSinais as SenaiSinalApi[]);
 
       if (totalItems !== null && totalItems !== undefined) {
@@ -33,6 +32,9 @@ export const useSenaiSinais = (paginaInicial = 1, itensPorPagina = 20) => {
   const trocarPagina  = (novaPagina: number) => {
     if (novaPagina < 1) return;
     if (totalPaginas && novaPagina > totalPaginas) return;
+    console.log("Total Paginas:", totalPaginas);
+    console.log("SINAIS NA TELA:", sinais);
+
     setPage(novaPagina);
   };
 
@@ -43,3 +45,7 @@ export const useSenaiSinais = (paginaInicial = 1, itensPorPagina = 20) => {
 
   return { sinais, loading, error, pageAtual, totalPaginas, trocarPagina };
 };
+
+
+
+

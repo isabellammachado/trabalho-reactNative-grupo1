@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { View, Text, ScrollView, ActivityIndicator, TouchableOpacity, TextInput} from "react-native";
 import { useSenaiSinais} from "../../hooks/useLibras";
-import { SenaiSinalApi } from "../../../TiposGerais"
+import { SenaiSinalApi } from "../../types"
 import { styles } from "./style";
+import { colors } from "../../theme/colors";
 
 export const Aprendizado = () => {
   const { sinais, loading, error, pageAtual, totalPaginas, trocarPagina } = useSenaiSinais(1, 20); 
@@ -12,7 +13,7 @@ export const Aprendizado = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Glossário de Sinais</Text>
 
-      {loading && <ActivityIndicator size="large" color="#008B8B" />}
+      {loading && <ActivityIndicator size="large" color={colors.secondary} />}
       {error && <Text style={styles.errorText}>{error}</Text>}
 
       <ScrollView >
@@ -20,7 +21,7 @@ export const Aprendizado = () => {
           <Text style={styles.infoText}>Nenhum sinal encontrado.</Text>
         )}
           
-        {sinais.map((sinal: SenaiSinalApi ) => (
+        {sinais.map((sinal: SenaiSinalApi ) => 
           <View key={sinal.id} style={styles.infoContainer}>
             <Text style={styles.textoResultado}>{sinal.titulo}</Text>
             {sinal.descricaoMovimento && (
@@ -28,7 +29,7 @@ export const Aprendizado = () => {
             )}
 
           </View>
-        ))}
+        )}
       </ScrollView>
 
       <View style={styles.paginacaoContainer}>
