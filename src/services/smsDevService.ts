@@ -2,19 +2,19 @@
 import axios, { AxiosResponse } from 'axios';
 import { BatchMessage, SmsDevBatchResponse, SmsDevResponseItem } from '../@types/smsdev';
 
-const SMSDEV_API_URL = 'https://api.smsdev.com.br/v1/send';
-export const BASE_KEY = 'MH4MFJ2X6U37HF5889C6A24MWHWQE2QSES321NVNSNZNXJZW8DQASQNIZ1CTMTQLN69J31W0XBU8M4I5VM07TEBETFWOHL9FT971KWX6PKIEU5OUNC0F710HL67LM5GQ';
+const API_KEY_SMS = process.env.EXPO_PUBLIC_URL_SMS
+export const API_KEY = process.env.EXPO_PUBLIC_URL_KEYSMS
 export const sendBatchAlerts = async (
     alertsToSend: BatchMessage[]
 ): Promise<boolean> => {
     try {
         const response: AxiosResponse<SmsDevBatchResponse> = await axios.post(
-            SMSDEV_API_URL,
+            API_KEY_SMS ,
             alertsToSend,
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${BASE_KEY}`
+                    'Authorization': `Bearer ${API_KEY}`
                 }
             }
         );

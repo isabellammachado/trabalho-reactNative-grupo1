@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { View, FlatList, Text, Alert, TouchableOpacity, StyleSheet } from 'react-native';
 import { AuthContext } from '../../hooks/AuthContext';
-import { MOCK_REQUESTS, abrirAgenda } from '../../services/api';
+import { API_KEY_REQUESTS , abrirAgenda } from '../../services/api';
 import Header from '../../components/Header/Index';
 import CardPedido from '../../components/Card/Index';
 import MeuBotao from '../../components/MeuBotao/Index';
@@ -31,7 +31,7 @@ export default function HomeScreen({ navigation }: HomeProps) {
 const carregar = () => {
   if (!user) return;
 
-  fetch(MOCK_REQUESTS)
+  fetch(API_KEY_REQUESTS )
     .then(r => r.json())
     .then((data: Pedido[]) => {
       if (user.role === 'surdo') {
@@ -56,7 +56,7 @@ const carregar = () => {
       {
         text: "Sim, Cancelar", style: "destructive", onPress: async () => {
           try {
-            await fetch(`${MOCK_REQUESTS}/${id}`, { method: 'DELETE' });
+            await fetch(`${API_KEY_REQUESTS }/${id}`, { method: 'DELETE' });
             setIsModalOpen(false);
             carregar();
           } catch {
@@ -77,7 +77,7 @@ const carregar = () => {
               status: 'aceito',
               voluntarioId: user?.id,
             };
-            await fetch(`${MOCK_REQUESTS}/${item.id}`, {
+            await fetch(`${API_KEY_REQUESTS }/${item.id}`, {
               method: 'PUT',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(updatedRequest)

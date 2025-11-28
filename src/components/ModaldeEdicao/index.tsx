@@ -11,7 +11,7 @@ import { AuthContext } from "../../hooks/AuthContext";
 import { User } from "../../types";
 
 
-export const ModalEdicao = ({ isVisible, onClose, usuarioAtual}) => {
+export const ModalEdicao = ({ isVisible, onClose, usuarioAtual, onSave}) => {
     const [name, setName] = useState(usuarioAtual?.name || '');
     const [password, setPassword] = useState(usuarioAtual?.password || '');
     const [telefone, setTelefone] = useState(usuarioAtual?.telefone || '');
@@ -19,6 +19,7 @@ export const ModalEdicao = ({ isVisible, onClose, usuarioAtual}) => {
     const { editar } = useContext(AuthContext); 
 
 
+    
     const escolheFoto = async () => {
         if (Platform.OS !== 'web') {
             const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -68,6 +69,7 @@ export const ModalEdicao = ({ isVisible, onClose, usuarioAtual}) => {
             transparent={true}
             visible={isVisible}
             onRequestClose={onClose}
+            
         >
             <View style={styles.fundoModal}>
                 <View style={styles.modalConteudo}>

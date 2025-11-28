@@ -13,7 +13,7 @@ import {
   Switch
 } from 'react-native';
 import { AuthContext } from '../../hooks/AuthContext';
-import { MOCK_REQUESTS } from '../../services/api';
+import { API_KEY_REQUESTS } from '../../services/api';
 import MeuInput from '../../components/Input/Index';
 import MeuBotao from '../../components/MeuBotao/Index';
 import Header from '../../components/Header/Index';
@@ -166,7 +166,7 @@ export default function CriarPedidoScreen({ navigation }: Props) {
     console.log("ENVIANDO PEDIDO PARA:", cidadeFinal);
 
     try {
-      const response = await fetch(MOCK_REQUESTS, {
+      const response = await fetch(API_KEY_REQUESTS, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dataToSend)

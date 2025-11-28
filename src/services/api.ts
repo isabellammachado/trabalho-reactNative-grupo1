@@ -1,9 +1,9 @@
 import { Linking, Alert } from 'react-native';
 import * as Calendar from 'expo-calendar';
 
-export const MOCK_USERS = 'https://691fa15831e684d7bfca4a7c.mockapi.io/users';
+export const API_KEYUSERS = process.env.EXPO_PUBLIC_URL_MOCKUSERS
 
-export const MOCK_REQUESTS = 'https://691fa15831e684d7bfca4a7c.mockapi.io/requests';
+export const API_KEY_REQUESTS = process.env.EXPO_PUBLIC_URL_REQUESTS
 
 interface ViaCepResponse {
   localidade: string;
