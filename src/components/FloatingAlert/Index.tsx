@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, Alert } from 'react-native';
 import { styles } from './Styles';
 import { SurdoAlert } from '../../@types/alerts';
 import { BatchMessage } from '../../@types/smsdev';
-import { BASE_KEY, sendBatchAlerts } from '../../services/smsDevService';
+import { API_KEY ,sendBatchAlerts } from '../../services/smsDevService';
 import { AuthContext } from '../../hooks/AuthContext';
 
 interface FloatingAlertProps {
@@ -24,7 +24,7 @@ export default function FloatingAlert({ alertData, onDismiss }: FloatingAlertPro
 
         const alertsToSend: BatchMessage[] = [
             {
-                key: BASE_KEY,
+                key: API_KEY,
                 type: 9,
                 number: Number(String(telefoneDoSurdo).replace(/\D/g, '')),
                 msg: "Ajuda aceita, aguarde no local." 

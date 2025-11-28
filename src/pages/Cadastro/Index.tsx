@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import {Text, View, Alert, Platform } from "react-native";
-import { MOCK_USERS, buscarCep } from "../../services/api";
+import {Text, View, Alert} from "react-native";
+import { API_KEYUSERS , buscarCep } from "../../services/api";
 import MeuInput from "../../components/Input/Index";
 import MeuBotao from "../../components/MeuBotao/Index";
 import { styles } from "./Styles";
@@ -58,7 +58,7 @@ export default function CadastroScreen({
     if(!form.telefone){
       return Alert.alert("Erro", "O telefone é obrigatório")
     }
-    const requisicao = await fetch(MOCK_USERS);
+    const requisicao = await fetch(API_KEYUSERS);
       const users: User[] = await requisicao.json();
       const existe = users.find((user) => user.email === form.email);
 
@@ -81,7 +81,7 @@ export default function CadastroScreen({
     };
 
      try {
-    const response = await fetch(MOCK_USERS, {
+    const response = await fetch(API_KEYUSERS, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(novoUsuario),

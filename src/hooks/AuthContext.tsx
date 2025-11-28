@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { User } from '../types';
 import fotoDefault from '../../assets/images.png';
 import { Alert } from 'react-native';
-import { MOCK_USERS } from '../services/api';
+import { API_KEYUSERS  } from '../services/api';
 
 interface AuthContextData {
   signed: boolean;
@@ -40,7 +40,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   async function signIn(email: string, pass: string) {
     try {
-      const response = await fetch(MOCK_USERS);
+      const response = await fetch(API_KEYUSERS);
       const users: User[] = await response.json();
 
       const userFound = users.find(u =>
@@ -76,7 +76,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const updatedUser = { ...user, ...novosDados };
 
-      const response = await fetch(`${MOCK_USERS}/${user.id}`, {
+      const response = await fetch(`${API_KEYUSERS}/${user.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!user?.id) return;
 
     try {
-      const response = await fetch(`${MOCK_USERS}/${user?.id}`, {
+      const response = await fetch(`${API_KEYUSERS}/${user?.id}`, {
         method: 'DELETE',
         headers: { "Content-Type": "application/json" }
       });
